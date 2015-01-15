@@ -26,6 +26,8 @@ Harjoitusty\'f6n tavoitteena on toteuttaa matriisilaskin, joka osaa suorittaa ai
 \
 Ohjelman on my\'f6s osattava hoitaa tilanteet, joissa yritet\'e4\'e4n suorittaa matriisikertolaskua kesken\'e4\'e4n "erisuuruisille" matriiseille, tai halutaan selvitt\'e4\'e4 k\'e4\'e4nteismatriisia sellaiselle matriisille joka ei ole k\'e4\'e4ntyv\'e4.\
 \
+Ohjelma saa sy\'f6tteen\'e4 matriisit merkkijonona, komennot siit\'e4 mit\'e4 laskutoimituksia tehd\'e4\'e4n ja tiedot siit\'e4 mille matriiseille ne tehd\'e4\'e4n. \
+\
 
 \b \ul Algoritmit ja tietorakenteet
 \b0 \ulnone \
@@ -34,7 +36,20 @@ Matriisien tallennus toteutetaan
 \i  
 \i0 \ul taulukkotietorakenteen\ulnone  avulla, sill\'e4 matriisin voi havannoillistaa helpoiten kaksiulotteisen taulukon avulla, jolle my\'f6s operaatioiden suoritus on k\'e4tevint\'e4 toteuttaa. Matriisikertolaskuihin sovelletaan joko \ul standardia matriisikertolaskualgoritmia\ulnone  tai 
 \i \ul Strassen
-\i0  algoritmia\ulnone  riippuen siit\'e4, kuinka isoja matriiseja ohjelman on pystytt\'e4v\'e4 k\'e4sittelem\'e4\'e4n ja miten harjoitusty\'f6 edistyy. Tavoitteena olisi kuitenkin k\'e4ytt\'e4\'e4 Strassen algoritmia, sill\'e4 se on tavallista algoritmia tehokkaampi.\
+\i0  algoritmia\ulnone  riippuen siit\'e4, kuinka haastavaksi Strassen algoritmi osoittautuu ja miten harjoitusty\'f6 edistyy. Projektin alkuvaiheessa toteutetaan tavallinen algoritmi, mutta tavoitteena olisi kuitenkin k\'e4ytt\'e4\'e4 Strassen algoritmia, sill\'e4 se on tavallista algoritmia tehokkaampi. Determinaatin ja k\'e4\'e4nteisen matriisin m\'e4\'e4ritt\'e4miseen k\'e4ytet\'e4\'e4n \ul LU-hajoitelmaa\ulnone , koska se on tehokkaimpia tapoja kyseisten ongelmien ratkaisemiseen. \
 \
 \
+
+\b \ul Aika- ja tilavaativuudet
+\b0 \ulnone \
+\
+Aikavaativuus on kertolaskun algoritmista riippuen joko O(n^3) tai O(n^2.8074). \
+\
+\
+
+\b \ul L\'e4hteet
+\b0 \ulnone \
+\
+LU-hajotelma: http://en.wikipedia.org/wiki/LU_decomposition\
+Strassen algoritmi: http://en.wikipedia.org/wiki/Strassen_algorithm\
 }

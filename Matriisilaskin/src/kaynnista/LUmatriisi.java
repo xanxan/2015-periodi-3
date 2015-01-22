@@ -12,9 +12,9 @@ public class LUmatriisi implements Matriisirajapinta {
     private int pituus;
     private int [][] matriisi;
     
-    public LUmatriisi(int leveys, int pituus, int[][] matriisi) {
-        this.leveys = leveys;
-        this.pituus = pituus;
+    public LUmatriisi(int[][] matriisi) {
+        this.leveys = matriisi[0].length;
+        this.pituus = matriisi.length;
         this.matriisi = matriisi;
     }
     
@@ -37,16 +37,21 @@ public class LUmatriisi implements Matriisirajapinta {
 
     @Override
     public int[][] skalaaritulo(int kerroin) {
-        
+        int[][] tulo = new int[this.pituus][this.leveys];
         for (int i = 0; i < this.pituus; i++) {
             for (int j = 0; j < this.leveys; j++) {
-                this.matriisi[i][j] = this.matriisi[i][j] * kerroin;
+                tulo[i][j] = this.matriisi[i][j] * kerroin;
             }
         }
         
+        return tulo;
+        
+        
+        
+    }
+
+    @Override
+    public int[][] getMatriisi() {
         return this.matriisi;
-        
-        
-        
     }
 }

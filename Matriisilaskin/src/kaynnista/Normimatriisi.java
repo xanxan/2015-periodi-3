@@ -13,9 +13,9 @@ public class Normimatriisi implements Matriisirajapinta {
     private int pituus;
     private int [][] matriisi;
 
-    public Normimatriisi(int leveys, int pituus, int[][] matriisi) {
-        this.leveys = leveys;
-        this.pituus = pituus;
+    public Normimatriisi(int[][] matriisi) {
+        this.leveys = matriisi[0].length;
+        this.pituus = matriisi.length;
         this.matriisi = matriisi;
     } 
     
@@ -29,6 +29,7 @@ public class Normimatriisi implements Matriisirajapinta {
         return this.pituus;
     }
     
+    @Override
     public int[][] getMatriisi() {
         return this.matriisi;
         
@@ -41,14 +42,14 @@ public class Normimatriisi implements Matriisirajapinta {
 
     @Override
     public int[][] skalaaritulo(int kerroin) {
-        
+        int[][] tulo = new int[this.pituus][this.leveys];
         for (int i = 0; i < this.pituus; i++) {
             for (int j = 0; j < this.leveys; j++) {
-                this.matriisi[i][j] = this.matriisi[i][j] * kerroin;
+                tulo[i][j] = this.matriisi[i][j] * kerroin;
             }
         }
         
-        return this.matriisi;
+        return tulo;
         
     }
     
@@ -58,14 +59,15 @@ public class Normimatriisi implements Matriisirajapinta {
      * @return summamatriisi
      */
     public int[][] matriisiensumma(Normimatriisi m2) {
+        int[][] summa = new int[this.pituus][this.leveys];
         if (this.koontarkistus(m2)) {
              for (int i = 0; i < this.pituus; i++) {
                 for (int j = 0; j < this.leveys; j++) {
-                    this.matriisi[i][j] = this.matriisi[i][j] + m2.matriisi[i][j];
+                    summa[i][j] = this.matriisi[i][j] + m2.matriisi[i][j];
                 }
               }
         
-             return this.matriisi;
+             return summa;
         } else {
             throw new IllegalArgumentException("Et voi summata erikokoisia matriiseja!");
         }
@@ -76,18 +78,24 @@ public class Normimatriisi implements Matriisirajapinta {
      * @return erotusmatriisi
      */
     public int[][] matriisienerotus(Normimatriisi m2) {
+        int[][] erotus = new int[this.pituus][this.leveys];
         if (this.koontarkistus(m2)) {
             for (int i = 0; i < this.pituus; i++) {
                 for (int j = 0; j < this.leveys; j++) {
-                    this.matriisi[i][j] = this.matriisi[i][j] - m2.matriisi[i][j];
+                    erotus[i][j] = this.matriisi[i][j] - m2.matriisi[i][j];
                 }
             }
-            return this.matriisi;
+            return erotus;
         } else {
             throw new IllegalArgumentException("Et voi erottaa erikokoisia matriiseja!");
         }
     }
-
+    /**
+     * matriisitulo laskee kahden matriisin tulon.
+     * apumuuttuja apu laskee kerrottujen solujen tulot yhteen.
+     * @param m2 kerrottava matriisi
+     * @return tulomatriisi
+     */
     public int[][] matriisitulo(Normimatriisi m2) {
         
         if (this.leveys == m2.pituus) {
@@ -97,7 +105,7 @@ public class Normimatriisi implements Matriisirajapinta {
             for (int i = 0; i < this.pituus; i++) {
                 for (int j = 0; j < m2.leveys; j++) {
                     int apu = 0;
-                    for (int k = 1; k <= this.leveys; k++) {
+                    for (int k = 0; k < this.leveys; k++) {
                         apu += this.matriisi[i][k]*m2.matriisi[k][j];
                     }
                     tulo[i][j] = apu;
@@ -113,7 +121,11 @@ public class Normimatriisi implements Matriisirajapinta {
             
     }
     
-    
+    /**
+     * koontarkistus varmistaa, että kaksi matriisia ovat samankokoiset (molemmat nxm).
+     * @param m2 verrattava matriisi
+     * @return true jos koot täsmäävät, muuten false.
+     */
     public boolean koontarkistus(Normimatriisi m2) {
         
         if (this.leveys == m2.leveys && this.pituus == m2.pituus) {

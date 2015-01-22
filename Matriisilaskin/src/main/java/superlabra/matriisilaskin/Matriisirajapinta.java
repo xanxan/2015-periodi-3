@@ -1,4 +1,4 @@
-package superlabra.matriisilaskin1;
+package superlabra.matriisilaskin;
 
 /**
  * Matriisirajapinta määrittää ne ominaisuudet jotka ovat yhteisiä kaikille matriiseille.
@@ -6,7 +6,7 @@ package superlabra.matriisilaskin1;
  * @author anna
  */
 public interface Matriisirajapinta {
-      int getLeveys();
+    int getLeveys();
     int getPituus();
     int[][] getMatriisi();
     /**

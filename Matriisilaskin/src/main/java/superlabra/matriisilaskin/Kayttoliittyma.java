@@ -1,4 +1,4 @@
-package superlabra.matriisilaskin1;
+package superlabra.matriisilaskin;
 
 /**
  *  Tekstikäyttöliittymän lopullinen toteutus tulee tänne.

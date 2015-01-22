@@ -1,4 +1,6 @@
-package superlabra.matriisilaskin1;
+package superlabra.matriisilaskin;
+
+import superlabra.matriisilaskin.Matriisirajapinta;
 
 /**
  *
@@ -9,24 +11,22 @@ package superlabra.matriisilaskin1;
  * @param matriisi annettu matriisi
  */
 public class Normimatriisi implements Matriisirajapinta {
-    private int leveys;
-    private int pituus;
+    
     private int [][] matriisi;
 
     public Normimatriisi(int[][] matriisi) {
-        this.leveys = matriisi[0].length;
-        this.pituus = matriisi.length;
+      
         this.matriisi = matriisi;
     } 
     
     @Override
     public int getLeveys() {
-        return this.leveys;
+        return matriisi[0].length;
     }
 
     @Override
     public int getPituus() {
-        return this.pituus;
+        return matriisi.length;
     }
     
     @Override
@@ -42,9 +42,9 @@ public class Normimatriisi implements Matriisirajapinta {
 
     @Override
     public int[][] skalaaritulo(int kerroin) {
-        int[][] tulo = new int[this.pituus][this.leveys];
-        for (int i = 0; i < this.pituus; i++) {
-            for (int j = 0; j < this.leveys; j++) {
+        int[][] tulo = new int[this.getPituus()][this.getLeveys()];
+        for (int i = 0; i < this.getPituus(); i++) {
+            for (int j = 0; j < this.getLeveys(); j++) {
                 tulo[i][j] = this.matriisi[i][j] * kerroin;
             }
         }
@@ -59,10 +59,10 @@ public class Normimatriisi implements Matriisirajapinta {
      * @return summamatriisi
      */
     public int[][] matriisiensumma(Normimatriisi m2) {
-        int[][] summa = new int[this.pituus][this.leveys];
+        int[][] summa = new int[this.getPituus()][this.getLeveys()];
         if (this.koontarkistus(m2)) {
-             for (int i = 0; i < this.pituus; i++) {
-                for (int j = 0; j < this.leveys; j++) {
+             for (int i = 0; i < this.getPituus(); i++) {
+                for (int j = 0; j < this.getLeveys(); j++) {
                     summa[i][j] = this.matriisi[i][j] + m2.matriisi[i][j];
                 }
               }
@@ -78,10 +78,10 @@ public class Normimatriisi implements Matriisirajapinta {
      * @return erotusmatriisi
      */
     public int[][] matriisienerotus(Normimatriisi m2) {
-        int[][] erotus = new int[this.pituus][this.leveys];
+        int[][] erotus = new int[this.getPituus()][this.getLeveys()];
         if (this.koontarkistus(m2)) {
-            for (int i = 0; i < this.pituus; i++) {
-                for (int j = 0; j < this.leveys; j++) {
+            for (int i = 0; i < this.getPituus(); i++) {
+                for (int j = 0; j < this.getLeveys(); j++) {
                     erotus[i][j] = this.matriisi[i][j] - m2.matriisi[i][j];
                 }
             }
@@ -98,14 +98,14 @@ public class Normimatriisi implements Matriisirajapinta {
      */
     public int[][] matriisitulo(Normimatriisi m2) {
         
-        if (this.leveys == m2.pituus) {
+        if (this.getLeveys() == m2.getPituus()) {
            
-            int[][] tulo = new int[this.pituus][m2.leveys];
+            int[][] tulo = new int[this.getPituus()][m2.getLeveys()];
            
-            for (int i = 0; i < this.pituus; i++) {
-                for (int j = 0; j < m2.leveys; j++) {
+            for (int i = 0; i < this.getPituus(); i++) {
+                for (int j = 0; j < m2.getLeveys(); j++) {
                     int apu = 0;
-                    for (int k = 0; k < this.leveys; k++) {
+                    for (int k = 0; k < this.getLeveys(); k++) {
                         apu += this.matriisi[i][k]*m2.matriisi[k][j];
                     }
                     tulo[i][j] = apu;
@@ -128,7 +128,7 @@ public class Normimatriisi implements Matriisirajapinta {
      */
     public boolean koontarkistus(Normimatriisi m2) {
         
-        if (this.leveys == m2.leveys && this.pituus == m2.pituus) {
+        if (this.getLeveys() == m2.getLeveys() && this.getPituus() == m2.getPituus()) {
             return true;
         }
         return false;

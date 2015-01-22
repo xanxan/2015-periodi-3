@@ -6,4 +6,6 @@ package kaynnista;
  */
 public class Matriisivarasto {
     
+    
+    
 }

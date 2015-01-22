@@ -89,18 +89,19 @@ public class Normimatriisi implements Matriisirajapinta {
     }
 
     public int[][] matriisitulo(Normimatriisi m2) {
-        int apu = 0;
+        
         if (this.leveys == m2.pituus) {
            
             int[][] tulo = new int[this.pituus][m2.leveys];
            
             for (int i = 0; i < this.pituus; i++) {
                 for (int j = 0; j < m2.leveys; j++) {
+                    int apu = 0;
                     for (int k = 1; k <= this.leveys; k++) {
                         apu += this.matriisi[i][k]*m2.matriisi[k][j];
                     }
                     tulo[i][j] = apu;
-                    apu = 0;
+                    
                   
                 }
             } 

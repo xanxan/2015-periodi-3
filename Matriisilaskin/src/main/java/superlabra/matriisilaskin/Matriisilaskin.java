@@ -10,11 +10,10 @@ public class Matriisilaskin
     {
          // Testikenttä 
         int m1 [][] = {{1,2,3},
-                       {4,5,6},
-                       {7,8,9}};
-        int m2 [][] = {{3,5,9},
-                       {5,8,2},
-                       {7,2,0}};
+                       {4,5,6}};
+        int m2 [][] = {{3},
+                       {5},
+                       {7}};
         
         Normimatriisi matriisi1 = new Normimatriisi(m1);
         Normimatriisi matriisi2 = new Normimatriisi(m2);
@@ -29,14 +28,17 @@ public class Matriisilaskin
         System.out.println("Matriisi 2 * 2:");
         tulosta(matriisi2.skalaaritulo(2));
         
-        System.out.println("Matriisi1 + matriisi2:");
-     
-        tulosta(matriisi1.matriisiensumma(matriisi2));
-        System.out.println("Matriisi1 - matriisi2:");
-        tulosta(matriisi1.matriisienerotus(matriisi2));
-          
+//        System.out.println("Matriisi1 + matriisi2:");
+//     
+//        tulosta(matriisi1.matriisiensumma(matriisi2));
+//        System.out.println("Matriisi1 - matriisi2:");
+//        tulosta(matriisi1.matriisienerotus(matriisi2));
+//          
         System.out.println("M1 * M2:");
         tulosta(matriisi1.matriisitulo(matriisi2));
+        
+        System.out.println("M1 transpoosi");
+        tulosta(matriisi1.transpoosi());
         
     }
     

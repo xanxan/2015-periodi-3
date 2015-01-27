@@ -133,5 +133,21 @@ public class Normimatriisi implements Matriisirajapinta {
         }
         return false;
     }
+    /**
+     * Transpoosi() laskee matriisin transpoosin.
+     * @return matriisin transpoosi
+     */
+    public int [][] transpoosi() {
+        
+        int[][] transpoosi = new int[this.getLeveys()][this.getPituus()];
+        
+        for (int i = 0; i < this.getLeveys(); i++) {
+                for (int j = 0; j < this.getPituus(); j++) {
+                    transpoosi[i][j] = this.getMatriisi()[j][i];
+                }
+        }
+        
+        return transpoosi;
+    }
 }
 

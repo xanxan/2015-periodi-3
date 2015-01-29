@@ -97,14 +97,11 @@ public class LUmatriisi implements Matriisirajapinta {
        
     }
     
-//    public double[][] getL() {
-//        return this.l;
-//    }
-//    
-//    public double[][] getU() {
-//        return this.u;
-//    }
-    
+
+    /**
+     * getL() erottaa hajoitelman L-matriisin ja se suoritetaan LU -matriisille.
+     * @return l-matriisi
+     */
     public double[][] getL() {
         double[][] l = new double[this.getPituus()][this.getLeveys()];
         for (int i = 0; i< this.getPituus(); i++) {
@@ -120,7 +117,10 @@ public class LUmatriisi implements Matriisirajapinta {
         }
         return l;
     }
-    
+    /**
+     * getU() erottaa hajoitelman U-matriisin ja se suoritetaan LU -matriisille.
+     * @return u-matriisi
+     */
     public double[][] getU() {
         double[][] u = this.getMatriisi();
         for (int i = 0; i< this.getPituus(); i++) {
@@ -134,10 +134,7 @@ public class LUmatriisi implements Matriisirajapinta {
         }
         return u;
     }
-    
-//    public void setU(double[][] u) {
-//        this.u = u;
-//    }
+
     
     @Override
     public double[][] getMatriisi() {

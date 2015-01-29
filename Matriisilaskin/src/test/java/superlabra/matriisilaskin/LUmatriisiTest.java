@@ -14,15 +14,26 @@ import static org.junit.Assert.*;
 public class LUmatriisiTest {
     private double[][] m1 = {{2,0,-5},
                          {1,6,100}};
-     private Normimatriisi x;
-   
+    private double[][] m2 = {{4,3},
+                       {6,3}};
+     private LUmatriisi x;
+     private LUmatriisi y;
+     
     public LUmatriisiTest() {
-         this.x = new Normimatriisi(m1);
+         this.x = new LUmatriisi(m1);
+         this.y = new LUmatriisi(m2);
     }
     
-    
+    @Test
+    public void tesDoolittle() {
+        double[][] apu = {{4,3},{1.5,-1.5}};
+        assertArrayEquals(apu, y.doolittle());
+    }
 
-  
+    @Test
+    public void testKoontarkistus() {
+        assertTrue(y.koontarkistus());
+    }
 
     /**
      * Test of skalaaritulo method, of class LUmatriisi.
@@ -31,16 +42,16 @@ public class LUmatriisiTest {
     public void testSkalaaritulo() {
         int a = 0; int b = 1; int c = 5; int d = -100;
        
-       int[][] ma = new int[2][3];
-       int[][] mc = {{10,0,-25},
-                    {5,30,500}};
-       int[][] md = {{-200,0,500},
-                     {-100,-600,-10000}};
+       double[][] ma = new double[2][2];
+       double[][] mc = {{20,15},
+                    {30,15}};
+       double[][] md = {{-400,-300},
+                     {-600,-300}};
        
-       assertArrayEquals(ma, x.skalaaritulo(a));
-       assertArrayEquals(m1, x.skalaaritulo(b));
-       assertArrayEquals(mc, x.skalaaritulo(c));
-       assertArrayEquals(md, x.skalaaritulo(d));
+       assertArrayEquals(ma, y.skalaaritulo(a));
+       assertArrayEquals(m2, y.skalaaritulo(b));
+       assertArrayEquals(mc, y.skalaaritulo(c));
+       assertArrayEquals(md, y.skalaaritulo(d));
     }
 
     

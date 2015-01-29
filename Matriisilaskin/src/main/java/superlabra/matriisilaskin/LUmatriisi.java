@@ -8,8 +8,9 @@ package superlabra.matriisilaskin;
  * @param matriisi annettu matriisi
  */
 public class LUmatriisi implements Matriisirajapinta {
-
-    private double [][] matriisi;
+    private double[][] l;
+    private double[][] matriisi;
+    private double[][] u;
     
     public LUmatriisi(double[][] matriisi) {
        
@@ -62,32 +63,54 @@ public class LUmatriisi implements Matriisirajapinta {
      * metodi toteuttaa doolittle algoritmin, siis hajauttaa matriisin.
      * @return hajotelma matriisi
      */
-    public double[][] doolittle() { // tämä ei anna muutamille alkioille oikeita arvoja, missä vika?
+    public double[][] doolittle() { // tämä toimii syötteellä 4,3;6,3 mutta muista syötteistä en ole täysin varma
      
         if (this.koontarkistus()) {
-           double[][] hajotelma = new double[this.getPituus()][this.getLeveys()];
-           for (int i = 0; i < this.getLeveys(); i++) {
-                for (int j = 0; j < i; j++) {
-                    double a = this.getMatriisi()[i][j];
-                    for (int p = 0; p < j; p++) {
-                        a = a - this.getMatriisi()[i][p] * this.getMatriisi()[p][j];
+//       
+         
+           double[][] hajotelma = this.matriisi; //palautettava hajotelmamatriisi
+           
+           for (int j = 0; j < this.matriisi.length; j++) {
+                for (int i = 0; i < j; i++) {
+                    double a = this.getMatriisi()[j][i];
+                    for (int p = 0; p < i; p++) {
+                        a -= this.getMatriisi()[p][i] * this.getMatriisi()[j][p];
                         
                     }
-                    hajotelma[i][j] = a / this.getMatriisi()[j][j];
+                    hajotelma[j][i] = a / this.getMatriisi()[i][i];
+                    
                 }
-                for (int j = i; j< this.getPituus(); j++) {
-                    double a = this.getMatriisi()[i][j];
-                    for (int p = 0; p < i; p++) {
-                        a = a - this.getMatriisi()[i][p] * this.getMatriisi()[p][j];
+               
+                for (int i = j; i< this.matriisi[0].length; i++) {
+                    double a = this.getMatriisi()[j][i];
+                    for (int p = 0; p < j; p++) {
+                        a -= this.getMatriisi()[p][i] * this.getMatriisi()[j][p];
                     }
-                    hajotelma[i][j] = a;
+                    hajotelma[j][i] = a;
+                    
                 }
-        }
+        }  
            return hajotelma;
         } else {
             throw new IllegalArgumentException("Matriisi ei ole neliömatriisi!");
         }
        
+    }
+    
+    public double[][] getL() {
+        return this.l;
+    }
+    
+    public double[][] getU() {
+        return this.u;
+    }
+    
+    public void setL(double[][] l) {
+        this.l = l;
+    }
+    
+    public void setU(double[][] u) {
+        this.u = u;
     }
     
     @Override

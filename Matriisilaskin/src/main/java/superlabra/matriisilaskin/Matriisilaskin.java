@@ -9,12 +9,11 @@ public class Matriisilaskin
     public static void main( String[] args )
     {
          // Testikenttä 
-        double m1 [][] = {{2,-1, -2},
-                       {-4,6,3},
-                       {-4,-2,8}};
-        double m2 [][] = {{3},
-                       {5},
-                       {7}};
+        double m2 [][] = {{1,3,-2},
+                       {0,-4,12},
+                       {0,-2,7}};
+        double m1 [][] = {{4,3},
+                       {6,3}};
         
         Normimatriisi matriisi1 = new Normimatriisi(m1);
         Normimatriisi matriisi2 = new Normimatriisi(m2);
@@ -27,24 +26,12 @@ public class Matriisilaskin
 //        
         System.out.println("doolittle");
         tulosta(matriisi3.doolittle());
-//        
-//        System.out.println("Matriisi 1 * 5:");
-//        tulosta(matriisi1.skalaaritulo(5));
-//        System.out.println("Matriisi 2 * 2:");
-//        tulosta(matriisi2.skalaaritulo(2));
-//        
-////        System.out.println("Matriisi1 + matriisi2:");
-////     
-////        tulosta(matriisi1.matriisiensumma(matriisi2));
-////        System.out.println("Matriisi1 - matriisi2:");
-////        tulosta(matriisi1.matriisienerotus(matriisi2));
-////          
-//        System.out.println("M1 * M2:");
-//        tulosta(matriisi1.matriisitulo(matriisi2));
-//        
-//        System.out.println("M1 transpoosi");
-//        tulosta(matriisi1.transpoosi());
-        
+        System.out.println("");
+        tulosta(matriisi3.getMatriisi());
+        System.out.println("hajotelmat");
+        tulosta(matriisi3.getL());
+        tulosta(matriisi3.getU());
+       
     }
     
     

@@ -26,23 +26,20 @@ public class NormimatriisiTest {
         this.z = new Normimatriisi(m3);
     }
     
- 
-
-    
 
     /**
      * Test of skalaaritulo method, of class Normimatriisi.
      */
     @Test
-    public void testSkalaaritulo() {
+    public void testSkalaaritulo() { // liukuluvussa 0.0/-0.0 ongelma korjataan myöhemmin
        
        
        int a = 0; int b = 1; int c = 5; int d = -100;
        
-       int[][] ma = new int[2][3];
-       int[][] mc = {{10,0,-25},
+       double[][] ma = new double[2][3];
+       double[][] mc = {{10,0,-25},
                     {5,30,500}};
-       int[][] md = {{-200,0,500},
+       double[][] md = {{-200,0,500},
                      {-100,-600,-10000}};
        
        assertArrayEquals(ma, x.skalaaritulo(a));
@@ -59,7 +56,7 @@ public class NormimatriisiTest {
     @Test
     public void testMatriisiensumma() {
         
-         int[][] summa = {{7,0,5},
+         double[][] summa = {{7,0,5},
                          {-3,3,101}};
          
          assertArrayEquals(summa, x.matriisiensumma(y));
@@ -73,7 +70,7 @@ public class NormimatriisiTest {
      */
     @Test
     public void testMatriisienerotus() {
-          int[][] erotus = {{-3,0,-15},
+          double[][] erotus = {{-3,0,-15},
                            {5,9,99}};
          
           assertArrayEquals(erotus, x.matriisienerotus(y));
@@ -84,7 +81,7 @@ public class NormimatriisiTest {
      */
     @Test
     public void testMatriisitulo() {
-          int[][] tulo = {{-4,-3,1},
+          double[][] tulo = {{-4,-3,1},
                          {86,27,91}};
           
           assertArrayEquals(tulo, z.matriisitulo(y));
@@ -102,7 +99,7 @@ public class NormimatriisiTest {
     
     @Test
     public void testTranspoosi() {
-        int[][] transpoosi = {{0,10},
+        double[][] transpoosi = {{0,10},
                               {1, -9}};
         assertArrayEquals(transpoosi, z.transpoosi());
         

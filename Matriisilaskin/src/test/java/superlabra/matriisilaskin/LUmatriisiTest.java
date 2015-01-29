@@ -31,6 +31,19 @@ public class LUmatriisiTest {
     }
 
     @Test
+    public void testGetL() {
+        y.doolittle();
+        double[][] apu = {{1,0},{1.5,1}};
+        assertArrayEquals(apu, y.getL());
+    }
+    
+    @Test
+    public void testGetU() {
+        y.doolittle();
+        double[][] apu = {{4,3},{0,-1.5}};
+        assertArrayEquals(apu, y.getU());
+    }
+    @Test
     public void testKoontarkistus() {
         assertTrue(y.koontarkistus());
     }

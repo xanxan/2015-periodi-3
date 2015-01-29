@@ -9,11 +9,11 @@ import org.junit.Test;
  * @author anna
  */
 public class NormimatriisiTest {
-    private int[][] m1 = {{2,0,-5},
+    private double[][] m1 = {{2,0,-5},
                          {1,6,100}};
-    private int[][] m2 = {{5,0,10},
+    private double[][] m2 = {{5,0,10},
                          {-4,-3,1}};
-    private int[][] m3 = {{0,1},
+    private double[][] m3 = {{0,1},
                          {10,-9}};
    
     private Normimatriisi x;
@@ -98,5 +98,13 @@ public class NormimatriisiTest {
           
           assertTrue(x.koontarkistus(y));
           assertFalse(y.koontarkistus(z));
+    }
+    
+    @Test
+    public void testTranspoosi() {
+        int[][] transpoosi = {{0,10},
+                              {1, -9}};
+        assertArrayEquals(transpoosi, z.transpoosi());
+        
     }
 }

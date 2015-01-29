@@ -8,11 +8,12 @@ package superlabra.matriisilaskin;
 public interface Matriisirajapinta {
     int getLeveys();
     int getPituus();
-    int[][] getMatriisi();
+    double[][] getMatriisi();
     /**
      *
      * @param kerroin on vakio jolla matriisin alkiot kerrotaan.
      * @return kertoimen ja matriisin skalaaritulo.
      */
-    int [][] skalaaritulo(int kerroin);
+    double [][] skalaaritulo(int kerroin);
+ 
 }

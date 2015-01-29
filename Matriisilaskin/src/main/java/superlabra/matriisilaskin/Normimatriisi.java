@@ -12,9 +12,9 @@ import superlabra.matriisilaskin.Matriisirajapinta;
  */
 public class Normimatriisi implements Matriisirajapinta {
     
-    private int [][] matriisi;
+    private double [][] matriisi;
 
-    public Normimatriisi(int[][] matriisi) {
+    public Normimatriisi(double[][] matriisi) {
       
         this.matriisi = matriisi;
     } 
@@ -30,7 +30,7 @@ public class Normimatriisi implements Matriisirajapinta {
     }
     
     @Override
-    public int[][] getMatriisi() {
+    public double[][] getMatriisi() {
         return this.matriisi;
         
     }
@@ -41,8 +41,8 @@ public class Normimatriisi implements Matriisirajapinta {
      */
 
     @Override
-    public int[][] skalaaritulo(int kerroin) {
-        int[][] tulo = new int[this.getPituus()][this.getLeveys()];
+    public double[][] skalaaritulo(int kerroin) {
+        double[][] tulo = new double[this.getPituus()][this.getLeveys()];
         for (int i = 0; i < this.getPituus(); i++) {
             for (int j = 0; j < this.getLeveys(); j++) {
                 tulo[i][j] = this.matriisi[i][j] * kerroin;
@@ -58,8 +58,8 @@ public class Normimatriisi implements Matriisirajapinta {
      * @param m2 summattava matriisi
      * @return summamatriisi
      */
-    public int[][] matriisiensumma(Normimatriisi m2) {
-        int[][] summa = new int[this.getPituus()][this.getLeveys()];
+    public double[][] matriisiensumma(Normimatriisi m2) {
+        double[][] summa = new double[this.getPituus()][this.getLeveys()];
         if (this.koontarkistus(m2)) {
              for (int i = 0; i < this.getPituus(); i++) {
                 for (int j = 0; j < this.getLeveys(); j++) {
@@ -77,8 +77,8 @@ public class Normimatriisi implements Matriisirajapinta {
      * @param m2 vähennettävä matriisi
      * @return erotusmatriisi
      */
-    public int[][] matriisienerotus(Normimatriisi m2) {
-        int[][] erotus = new int[this.getPituus()][this.getLeveys()];
+    public double[][] matriisienerotus(Normimatriisi m2) {
+        double[][] erotus = new double[this.getPituus()][this.getLeveys()];
         if (this.koontarkistus(m2)) {
             for (int i = 0; i < this.getPituus(); i++) {
                 for (int j = 0; j < this.getLeveys(); j++) {
@@ -96,11 +96,11 @@ public class Normimatriisi implements Matriisirajapinta {
      * @param m2 kerrottava matriisi
      * @return tulomatriisi
      */
-    public int[][] matriisitulo(Normimatriisi m2) {
+    public double[][] matriisitulo(Normimatriisi m2) {
         
         if (this.getLeveys() == m2.getPituus()) {
            
-            int[][] tulo = new int[this.getPituus()][m2.getLeveys()];
+            double[][] tulo = new double[this.getPituus()][m2.getLeveys()];
            
             for (int i = 0; i < this.getPituus(); i++) {
                 for (int j = 0; j < m2.getLeveys(); j++) {
@@ -137,9 +137,9 @@ public class Normimatriisi implements Matriisirajapinta {
      * Transpoosi() laskee matriisin transpoosin.
      * @return matriisin transpoosi
      */
-    public int [][] transpoosi() {
+    public double [][] transpoosi() {
         
-        int[][] transpoosi = new int[this.getLeveys()][this.getPituus()];
+        double[][] transpoosi = new double[this.getLeveys()][this.getPituus()];
         
         for (int i = 0; i < this.getLeveys(); i++) {
                 for (int j = 0; j < this.getPituus(); j++) {

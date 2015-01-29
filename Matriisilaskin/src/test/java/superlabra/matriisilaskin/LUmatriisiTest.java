@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  * @author anna
  */
 public class LUmatriisiTest {
-    private int[][] m1 = {{2,0,-5},
+    private double[][] m1 = {{2,0,-5},
                          {1,6,100}};
      private Normimatriisi x;
    

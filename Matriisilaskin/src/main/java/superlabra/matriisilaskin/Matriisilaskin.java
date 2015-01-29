@@ -25,12 +25,14 @@ public class Matriisilaskin
 //        tulosta(matriisi2.getMatriisi());
 //        
         System.out.println("doolittle");
-        tulosta(matriisi3.doolittle());
+        LUmatriisi m4 = new LUmatriisi(matriisi3.doolittle());
+        tulosta(m4.getMatriisi());
+        
         System.out.println("");
-        tulosta(matriisi3.getMatriisi());
+        
         System.out.println("hajotelmat");
-        tulosta(matriisi3.getL());
-        tulosta(matriisi3.getU());
+        tulosta(m4.getL());
+        tulosta(m4.getU());
        
     }
     

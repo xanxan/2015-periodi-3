@@ -8,9 +8,9 @@ package superlabra.matriisilaskin;
  * @param matriisi annettu matriisi
  */
 public class LUmatriisi implements Matriisirajapinta {
-    private double[][] l;
+   
     private double[][] matriisi;
-    private double[][] u;
+    
     
     public LUmatriisi(double[][] matriisi) {
        
@@ -97,21 +97,47 @@ public class LUmatriisi implements Matriisirajapinta {
        
     }
     
+//    public double[][] getL() {
+//        return this.l;
+//    }
+//    
+//    public double[][] getU() {
+//        return this.u;
+//    }
+    
     public double[][] getL() {
-        return this.l;
+        double[][] l = new double[this.getPituus()][this.getLeveys()];
+        for (int i = 0; i< this.getPituus(); i++) {
+            for (int j=0; j<this.getLeveys(); j++) {
+                if (i == j) {
+                    l[i][j] = 1;
+                } else if (i<j) {
+                    l[i][j] = 0;
+                } else {
+                    l[i][j] = this.getMatriisi()[i][j];
+                }
+            }
+        }
+        return l;
     }
     
     public double[][] getU() {
-        return this.u;
+        double[][] u = this.getMatriisi();
+        for (int i = 0; i< this.getPituus(); i++) {
+            for (int j=0; j<this.getLeveys(); j++) {
+                if (i > j) {
+                    u[i][j] = 0;
+                }  else {
+                    u[i][j] = this.getMatriisi()[i][j];
+                }
+            }
+        }
+        return u;
     }
     
-    public void setL(double[][] l) {
-        this.l = l;
-    }
-    
-    public void setU(double[][] u) {
-        this.u = u;
-    }
+//    public void setU(double[][] u) {
+//        this.u = u;
+//    }
     
     @Override
     public double[][] getMatriisi() {

@@ -24,16 +24,17 @@ public class Matriisilaskin
 //        System.out.println("Matriisi 2:");
 //        tulosta(matriisi2.getMatriisi());
 //        
-        System.out.println("doolittle");
-        LUmatriisi m4 = new LUmatriisi(matriisi3.doolittle());
-        tulosta(m4.getMatriisi());
-        
-        System.out.println("");
-        
-        System.out.println("hajotelmat");
-        tulosta(m4.getL());
-        tulosta(m4.getU());
-       
+//        System.out.println("doolittle");
+//        LUmatriisi m4 = new LUmatriisi(matriisi3.doolittle());
+//        tulosta(m4.getMatriisi());
+//        
+//        System.out.println("");
+//        
+//        System.out.println("hajotelmat");
+//        tulosta(m4.getL());
+//        tulosta(m4.getU());
+           tulosta(matriisi3.doolittle());
+          System.out.println("jee  " + matriisi3.determinantti());;
     }
     
     

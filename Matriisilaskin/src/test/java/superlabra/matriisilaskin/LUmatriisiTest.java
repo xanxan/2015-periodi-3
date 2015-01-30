@@ -43,6 +43,13 @@ public class LUmatriisiTest {
         double[][] apu = {{4,3},{0,-1.5}};
         assertArrayEquals(apu, y.getU());
     }
+    
+    @Test
+    public void testDeterminantti() {
+        y.doolittle();
+        assertEquals(-6, y.determinantti(), 0.001);
+    }
+    
     @Test
     public void testKoontarkistus() {
         assertTrue(y.koontarkistus());

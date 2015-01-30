@@ -134,7 +134,19 @@ public class LUmatriisi implements Matriisirajapinta {
         }
         return u;
     }
-
+    /**
+     * determinantti() laskee valmiiksi hajautetun matriisin determinantin.
+     * @return determinanttiluku
+     */
+    public double determinantti() {
+        
+        double[][] apu = this.getU(); //haetaan hajautuksen U-matriisi
+        double determinantti = 1;
+        for (int i = 0; i < apu.length; i++) {
+            determinantti *= apu[i][i];
+        }
+        return determinantti;
+    }
     
     @Override
     public double[][] getMatriisi() {

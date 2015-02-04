@@ -98,7 +98,7 @@ public class Normimatriisi implements Matriisirajapinta {
      */
     public double[][] matriisitulo(Normimatriisi m2) {
         
-        if (this.getLeveys() == m2.getPituus()) {
+        if (this.onkoKerrottavissa(m2)) {
            
             double[][] tulo = new double[this.getPituus()][m2.getLeveys()];
            
@@ -120,6 +120,15 @@ public class Normimatriisi implements Matriisirajapinta {
         
             
     }
+    /**
+     * onkokerrottavissa tarkistaa, että matriisien koot mahdollistavat matriisikertolaskun.
+     * @param m2
+     * @return boolean
+     */
+    public boolean onkoKerrottavissa(Normimatriisi m2) {
+        
+        return this.getLeveys() == m2.getPituus();
+    }
     
     /**
      * koontarkistus varmistaa, että kaksi matriisia ovat samankokoiset (molemmat nxm).
@@ -128,10 +137,7 @@ public class Normimatriisi implements Matriisirajapinta {
      */
     public boolean koontarkistus(Normimatriisi m2) {
         
-        if (this.getLeveys() == m2.getLeveys() && this.getPituus() == m2.getPituus()) {
-            return true;
-        }
-        return false;
+        return this.getLeveys() == m2.getLeveys() && this.getPituus() == m2.getPituus();
     }
     /**
      * Transpoosi() laskee matriisin transpoosin.

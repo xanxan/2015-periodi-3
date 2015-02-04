@@ -14,7 +14,8 @@ public class Matriisilaskin
                        {0,-2,7}};
         double m1 [][] = {{4,3},
                        {6,3}};
-        
+       
+   
         Normimatriisi matriisi1 = new Normimatriisi(m1);
         Normimatriisi matriisi2 = new Normimatriisi(m2);
         LUmatriisi matriisi3 = new LUmatriisi(m1);

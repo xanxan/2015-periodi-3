@@ -48,7 +48,7 @@ public class LUmatriisi implements Matriisirajapinta {
     }
 
      /**
-     * koontarkistus varmistaa, että kaksi matriisia ovat samankokoiset (molemmat nxm).
+     * koontarkistus varmistaa, että matriisi on neliömatriisi (nxn).
      * @param m2 verrattava matriisi
      * @return true jos koot täsmäävät, muuten false.
      */

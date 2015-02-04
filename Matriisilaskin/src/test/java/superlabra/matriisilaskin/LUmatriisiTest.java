@@ -16,12 +16,15 @@ public class LUmatriisiTest {
                          {1,6,100}};
     private double[][] m2 = {{4,3},
                        {6,3}};
+    private double[][] m3 = {{5}};
      private LUmatriisi x;
      private LUmatriisi y;
+     private LUmatriisi z;
      
     public LUmatriisiTest() {
          this.x = new LUmatriisi(m1);
          this.y = new LUmatriisi(m2);
+         this.z = new LUmatriisi (m3);
     }
     
     @Test
@@ -53,6 +56,7 @@ public class LUmatriisiTest {
     @Test
     public void testKoontarkistus() {
         assertTrue(y.koontarkistus());
+        assertTrue(z.koontarkistus());
     }
 
     /**

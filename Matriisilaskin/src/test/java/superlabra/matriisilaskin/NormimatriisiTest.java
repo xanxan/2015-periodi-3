@@ -15,18 +15,24 @@ public class NormimatriisiTest {
                          {-4,-3,1}};
     private double[][] m3 = {{0,1},
                          {10,-9}};
+    private double[][] m4 = {{5}};
+    private double[][] m5 = {{1,2,3}};
    
     private Normimatriisi x;
     private Normimatriisi y;
     private Normimatriisi z;
+    private Normimatriisi k;
+    private Normimatriisi i;
     
     public NormimatriisiTest() {
         this.x = new Normimatriisi(m1);
         this.y = new Normimatriisi(m2);
         this.z = new Normimatriisi(m3);
+        this.k = new Normimatriisi(m4);
+        this.i = new Normimatriisi(m5);
     }
     
-
+    
     /**
      * Test of skalaaritulo method, of class Normimatriisi.
      */
@@ -42,17 +48,34 @@ public class NormimatriisiTest {
        double[][] md = {{-200,0,500},
                      {-100,-600,-10000}};
        
-       assertArrayEquals(ma, x.skalaaritulo(a));
-       assertArrayEquals(m1, x.skalaaritulo(b));
-       assertArrayEquals(mc, x.skalaaritulo(c));
-       assertArrayEquals(md, x.skalaaritulo(d));
+       for (int i = 0; i < x.getPituus(); i++) {
+           for (int j = 0; j < x.getLeveys(); j++) {
+               
+             assertEquals(ma[i][j], x.skalaaritulo(a)[i][j], 0.001);
+             assertEquals(m1[i][j], x.skalaaritulo(b)[i][j], 0.001);
+             assertEquals(mc[i][j], x.skalaaritulo(c)[i][j], 0.001);
+             assertEquals(md[i][j], x.skalaaritulo(d)[i][j], 0.001);
        
-
+           }
+       }
     }
-
-    /**
-     * Test of matriisiensumma method, of class Normimatriisi.
-     */
+    
+    @Test
+    public void testOnkoKerrottavissa() {
+        assertTrue(k.onkoKerrottavissa(i));
+        assertFalse(i.onkoKerrottavissa(k));
+        
+    }
+    
+    @Test
+    public void testKoontarkistusTyhjälläMatriisilla() {
+        double[][]  tyhja= {{}};
+        Normimatriisi t = new Normimatriisi(tyhja);
+        
+        assertFalse(x.koontarkistus(t));
+        assertFalse(x.onkoKerrottavissa(t));
+    }
+    
     @Test
     public void testMatriisiensumma() {
         
@@ -81,10 +104,12 @@ public class NormimatriisiTest {
      */
     @Test
     public void testMatriisitulo() {
-          double[][] tulo = {{-4,-3,1},
+          double[][] tulo1 = {{-4,-3,1},
                          {86,27,91}};
+          double[][] tulo2 = {{5,10,15}};
           
-          assertArrayEquals(tulo, z.matriisitulo(y));
+          assertArrayEquals(tulo1, z.matriisitulo(y));
+          assertArrayEquals(tulo2, k.matriisitulo(i));
     }
 
     /**
@@ -99,9 +124,12 @@ public class NormimatriisiTest {
     
     @Test
     public void testTranspoosi() {
+        
         double[][] transpoosi = {{0,10},
                               {1, -9}};
+        double[][] yksi = {{5}};
         assertArrayEquals(transpoosi, z.transpoosi());
+        assertArrayEquals(yksi, k.transpoosi());
         
     }
 }

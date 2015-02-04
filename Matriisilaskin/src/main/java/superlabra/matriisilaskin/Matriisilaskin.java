@@ -35,7 +35,9 @@ public class Matriisilaskin
 //        tulosta(m4.getL());
 //        tulosta(m4.getU());
            tulosta(matriisi3.doolittle());
-          System.out.println("jee  " + matriisi3.determinantti());;
+          
+           tulosta(matriisi3.kaanteismatriisi());
+//          System.out.println("jee  " + matriisi3.determinantti());;
     }
     
     

@@ -148,6 +148,41 @@ public class LUmatriisi implements Matriisirajapinta {
         return determinantti;
     }
     
+    public double[][] kaanteismatriisi() {
+        double[] x = new double[this.getPituus()];
+        double[] b = new double[this.getPituus()];
+        for (int i = 0; i< this.getPituus(); i++) {
+            for (int j = 0; j<this.getLeveys(); j++) {
+                if (i==j){
+                    b[j] = 1;
+                } else {
+                    b[j] = 0;
+                } break;
+            }
+        
+            x[1]=b[1];
+            for (int k = 2; k < this.getPituus(); k++) {
+                double s = 0;
+                for (int j = 1; j < k-1; j++) {
+                     s += this.getMatriisi()[k][j] * x[j];
+                }
+                x[k] = b[k]-s;
+            }
+            x[this.getPituus()-1] = x[this.getPituus()-1] / this.getMatriisi()[this.getPituus()-1][this.getLeveys()-1];
+            for (int k = this.getPituus()-1; k>-1; k--) {
+                int s = 0;
+                for (int j = k+1; j<this.getPituus(); j++) {
+                    s += this.getMatriisi()[k][j] * x[j];
+                }
+                x[k] = (x[k] -s)/this.getMatriisi()[k][k];
+            }
+        
+            for (int j = 1; j<this.getPituus(); j++) {
+                this.getMatriisi()[j][i] = x[j];
+            }
+        }  
+        return this.getMatriisi();
+    }
     @Override
     public double[][] getMatriisi() {
         return this.matriisi;

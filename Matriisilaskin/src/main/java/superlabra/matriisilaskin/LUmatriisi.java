@@ -135,7 +135,7 @@ public class LUmatriisi implements Matriisirajapinta {
         }
         return u;
     }
-    public static void tulosta(double[] matriisi) {
+    public static void tulosta(double[] matriisi) { //testauskäyttöön, ei kuulu oikeaan koodiin
          
          for (int i = 0; i < matriisi.length; i++) {
              System.out.print("[ ");
@@ -146,7 +146,7 @@ public class LUmatriisi implements Matriisirajapinta {
         }
        
     }
-    public static void tulosta(double[][] matriisi) {
+    public static void tulosta(double[][] matriisi) { //testauskäyttöön, ei kuulu oikeaan koodiin
          
          for (int i = 0; i < matriisi.length; i++) {
              System.out.print("[ ");
@@ -170,7 +170,10 @@ public class LUmatriisi implements Matriisirajapinta {
         }
         return determinantti;
     }
-    
+    /**
+     * kaanteismatriisi laskee matriisin käänteismatriisin siitä muodostetun lu-hajotelman avulla.
+     * @return käänteismatriisi
+     */
     public double[][] kaanteismatriisi() {
         double[] x = new double[this.getPituus()];
         double[] b = new double[this.getPituus()];

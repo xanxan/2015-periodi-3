@@ -115,6 +115,7 @@ public class LUmatriisi implements Matriisirajapinta {
                 }
             }
         }
+        
         return l;
     }
     /**
@@ -133,6 +134,28 @@ public class LUmatriisi implements Matriisirajapinta {
             }
         }
         return u;
+    }
+    public static void tulosta(double[] matriisi) {
+         
+         for (int i = 0; i < matriisi.length; i++) {
+             System.out.print("[ ");
+            
+                System.out.print(matriisi[i] + " ");
+            
+             System.out.println(" ]");
+        }
+       
+    }
+    public static void tulosta(double[][] matriisi) {
+         
+         for (int i = 0; i < matriisi.length; i++) {
+             System.out.print("[ ");
+            for (int j = 0; j < matriisi[0].length; j++) {
+                System.out.print(matriisi[i][j] + " ");
+            }
+             System.out.println(" ]");
+        }
+       
     }
     /**
      * determinantti() laskee valmiiksi hajautetun matriisin determinantin.
@@ -157,17 +180,25 @@ public class LUmatriisi implements Matriisirajapinta {
                     b[j] = 1;
                 } else {
                     b[j] = 0;
-                } 
+                }
+               
             }
         
             x[0]=b[0];
             for (int k = 1; k < this.getPituus(); k++) {
                 double s = 0;
-                for (int j = 0; j < k+1; j++) {
+                System.out.println("x = " ); //debug
+                tulosta(x); // debug
+                for (int j = 0; j < k; j++) {
                      s += this.getMatriisi()[k][j] * x[j];
+                     tulosta(this.getMatriisi()); //debug
+                     System.out.println(this.getMatriisi()[k][j]); //debug
+                     System.out.println("s: " + s); //debug
                 }
                 x[k] = b[k]-s;
-            }
+                System.out.println("x="); //debug
+                tulosta(x); // debug
+            } //back substitution to solve Ux = d
             x[this.getPituus()-1] = x[this.getPituus()-1] / this.getMatriisi()[this.getPituus()-1][this.getLeveys()-1];
             for (int k = this.getPituus()-2; k>-1; k--) {
                 int s = 0;

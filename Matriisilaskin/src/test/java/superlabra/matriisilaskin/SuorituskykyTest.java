@@ -133,5 +133,55 @@ public class SuorituskykyTest {
         
     }
 
+    @Test
+    public void testdoolittle10x10() {
+        
+        double[][] matriisi1 = generoiMatriisi(10, 10);
+        LUmatriisi m1 = new LUmatriisi(matriisi1);
+       
+        
+        long aloitusaika = System.nanoTime();
+        m1.doolittle();
+        long lopetusaika = System.nanoTime();
+        long kulunut = lopetusaika - aloitusaika;
+        
+        System.out.println("Matriisilla 10x10: " + kulunut);
+        assertTrue(kulunut < 200000);
+        
+    }
+    
+      @Test
+    public void testdoolittle100x100() {
+        
+        double[][] matriisi1 = generoiMatriisi(100, 100);
+        LUmatriisi m1 = new LUmatriisi(matriisi1);
+       
+        
+        long aloitusaika = System.nanoTime();
+        m1.doolittle();
+        long lopetusaika = System.nanoTime();
+        long kulunut = lopetusaika - aloitusaika;
+        
+        System.out.println("Matriisilla 100x100: " + kulunut);
+        assertTrue(kulunut < 8000000);
+        
+    }
+    
+      @Test
+    public void testdoolittle1000x1000() {
+        
+        double[][] matriisi1 = generoiMatriisi(1000, 1000);
+        LUmatriisi m1 = new LUmatriisi(matriisi1);
+       
+        
+        long aloitusaika = System.nanoTime();
+        m1.doolittle();
+        long lopetusaika = System.nanoTime();
+        long kulunut = lopetusaika - aloitusaika;
+        
+        System.out.println("Matriisilla 1000x1000: " + kulunut);
+        assertTrue(kulunut < 900000000);
+        
+    }
 
 }

@@ -218,6 +218,8 @@ public class LUmatriisi implements Matriisirajapinta {
     
         return this.getMatriisi();
     }
+    
+    
     @Override
     public double[][] getMatriisi() {
         return this.matriisi;

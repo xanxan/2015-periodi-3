@@ -69,8 +69,8 @@ public class LUmatriisi implements Matriisirajapinta {
 //       
          
            double[][] hajotelma = this.matriisi; //palautettava hajotelmamatriisi
-           
-           for (int j = 0; j < this.matriisi.length; j++) {
+//            
+           for (int j = 0; j < this.getPituus(); j++) {
                 for (int i = 0; i < j; i++) {
                     double a = this.getMatriisi()[j][i];
                     for (int p = 0; p < i; p++) {
@@ -81,7 +81,7 @@ public class LUmatriisi implements Matriisirajapinta {
                     
                 }
                
-                for (int i = j; i< this.matriisi[0].length; i++) {
+                for (int i = j; i< this.getLeveys(); i++) {
                     double a = this.getMatriisi()[j][i];
                     for (int p = 0; p < j; p++) {
                         a -= this.getMatriisi()[p][i] * this.getMatriisi()[j][p];
@@ -89,7 +89,7 @@ public class LUmatriisi implements Matriisirajapinta {
                     hajotelma[j][i] = a;
                     
                 }
-        }  
+            }  
            return hajotelma;
         } else {
             throw new IllegalArgumentException("Matriisi ei ole neliömatriisi!");

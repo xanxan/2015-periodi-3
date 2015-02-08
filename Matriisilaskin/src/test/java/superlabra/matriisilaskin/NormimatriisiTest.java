@@ -1,5 +1,6 @@
 package superlabra.matriisilaskin;
 
+import java.util.Random;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -31,8 +32,79 @@ public class NormimatriisiTest {
         this.k = new Normimatriisi(m4);
         this.i = new Normimatriisi(m5);
     }
+    private double[][] generoiMatriisi(int leveys, int pituus) {
+        
+        Random r = new Random();
+        double[][] matriisi = new double[pituus][leveys];
+        
+        for (double[] matriisi1 : matriisi) {
+            for (int j = 0; j<matriisi[0].length; j++) {
+                matriisi1[j] = r.nextDouble();
+            }
+        }
+        
+        return matriisi;
+        
+    }
+    public long kulunutAika(long aloitusaika) {
+        return System.nanoTime() - aloitusaika;
+    }
+    @Test
+    public void testMatriisikertolasku10x10() {
+        
+        double[][] matriisi1 = generoiMatriisi(10, 10);
+        double[][] matriisi2 = generoiMatriisi(10, 10);
+        
+        Normimatriisi m1 = new Normimatriisi(matriisi1);
+        Normimatriisi m2 = new Normimatriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.matriisitulo(m2);
+        long lopetusaika = System.nanoTime();
+        long kulunut = lopetusaika - aloitusaika;
+        
+        System.out.println("Matriisilla 10x10: " + kulunut);
+        assertTrue(kulunut < 200000);
+        
+    }
     
+    @Test
+    public void testMatriisikertolasku100x100() {
+        
+        double[][] matriisi1 = generoiMatriisi(100, 100);
+        double[][] matriisi2 = generoiMatriisi(100, 100);
+        
+        Normimatriisi m1 = new Normimatriisi(matriisi1);
+        Normimatriisi m2 = new Normimatriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.matriisitulo(m2);
+        long lopetusaika = System.nanoTime();
+        long kulunut = lopetusaika - aloitusaika;
+        
+        System.out.println("Matriisilla 100x100: " + kulunut);
+        assertTrue(kulunut < 20000000);
+        
+    }
     
+    @Test
+    public void testMatriisikertolasku10x50X40x10() {
+        
+        double[][] matriisi1 = generoiMatriisi(10, 50);
+        double[][] matriisi2 = generoiMatriisi(40, 10);
+        
+        Normimatriisi m1 = new Normimatriisi(matriisi1);
+        Normimatriisi m2 = new Normimatriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.matriisitulo(m2);
+        long lopetusaika = System.nanoTime();
+        long kulunut = lopetusaika - aloitusaika;
+        
+        System.out.println("Matriisilla 10x50X40x10: " + kulunut);
+        assertTrue(kulunut < 2000000);
+        
+    }
     /**
      * Test of skalaaritulo method, of class Normimatriisi.
      */

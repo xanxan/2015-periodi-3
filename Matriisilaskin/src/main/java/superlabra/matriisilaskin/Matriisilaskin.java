@@ -18,10 +18,10 @@ public class Matriisilaskin
    
         Normimatriisi matriisi1 = new Normimatriisi(m1);
         Normimatriisi matriisi2 = new Normimatriisi(m2);
-        LUmatriisi matriisi3 = new LUmatriisi(m2);
+        LUmatriisi matriisi3 = new LUmatriisi(m1);
         
-//        System.out.println("Matriisi 1:");
-//        tulosta(matriisi1.getMatriisi());
+        System.out.println("Matriisi 1:");
+        tulosta(matriisi1.getMatriisi());
 //        System.out.println("Matriisi 2:");
 //        tulosta(matriisi2.getMatriisi());
 //        
@@ -39,7 +39,7 @@ public class Matriisilaskin
 //           Normimatriisi n = new Normimatriisi(matriisi3.getL());
 //           Normimatriisi m = new Normimatriisi(matriisi3.getU());
 //          tulosta(n.matriisitulo(m));
-           tulosta(matriisi3.kaanteismatriisi());
+//           tulosta(matriisi3.kaanteismatriisi());
           
 //           tulosta(matriisi3.kaanteismatriisi());
 //          System.out.println("jee  " + matriisi3.determinantti());;

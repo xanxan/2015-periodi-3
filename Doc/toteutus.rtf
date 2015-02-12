@@ -8,14 +8,15 @@
 \
 Ohjelman yleisrakenne\
 \
-Matriisi ottaa vastaan k\'e4ytt\'e4j\'e4n sy\'f6tt\'e4m\'e4t matriisit ja kutsuu matriisien operaatioita suorittavia metodeja k\'e4ytt\'f6liittym\'e4luokssa. Matriisioperaatiot on jaettu normaalioperaatiot suorittavaksi luokaksi ja LU-hajotelmaa hy\'f6dynt\'e4v\'e4ksi luokaksi. Molemmat operaatiot hy\'f6dynt\'e4v\'e4t matriisi -rajapintaa, joka m\'e4\'e4ritt\'e4\'e4 operaatioluokan pakolliset metodit. T\'e4t\'e4 voidan hy\'f6dynt\'e4\'e4, jos haluaa luoda oman operaatioluokan esimerkiksi muille hajotelmatyypeille. Ohjelman rakenne ei ole t\'e4ll\'e4 hetkell\'e4 kovinkaan looginen, mutta sit\'e4 tullaan hienos\'e4\'e4t\'e4m\'e4\'e4n keskeisimpien algoritmien ja toimintojen valmistuttua.  \
+Matriisivarasto ottaa vastaan ja tallentaa k\'e4ytt\'e4j\'e4n sy\'f6tt\'e4m\'e4t matriisit ja kutsuu matriisien operaatioita suorittavia metodeja k\'e4ytt\'f6liittym\'e4luokassa. Ohjelmalla on rajapinta, joka m\'e4\'e4ritt\'e4\'e4 matriisiolion pakolliset ominaisuudet, eli luokan Matriisi on palautettava matriisin sis\'e4lt\'f6, leveys ja pituus. Matriisin perusoperaatiot kutsutaan matriisioliolle ja niiden palautusarvo on matriisiolio. Luokka LU on k\'e4yt\'e4nn\'f6ss\'e4 laskin, joka suorittaa LU-hajotelman operaatiot parametriksi annetulle matriisioliolle ja my\'f6s palauttaa matriisiolion.  \
 \
 Saavutetut aika- ja tilavaativuudet\
 \
-Tilavaativuutena toimii matriisin koko. Matriisikertolasku toimii t\'e4ll\'e4 hetkell\'e4 O(n^3) ajassa (kolme looppia ja loput toiminnot O(1) eli vakioajassa). \
+Tilavaativuutena toimii matriisin koko. Matriisikertolasku toimii t\'e4ll\'e4 hetkell\'e4 O(n^3) ajassa (kolme looppia ja loput toiminnot O(1) eli vakioajassa). getL ja getU ovat O(n^2) ja doolittle O(n^3).\
 \
 Suorituskyky- ja O-analyysivertailu\
 \
 Ty\'f6n mahdolliset puutteet ja parannusehdotukset\
 \
+K\'e4\'e4nteismatriisi ei toimi toistaiseksi. Ohjelman voisi "k\'e4\'e4nt\'e4\'e4 suomesta englanniksi" mik\'e4li aikaa j\'e4\'e4, koska nykyinen suomen ja englannin sekasotku ei ole kovin funktionaalinen. \
 L\'e4hteet}

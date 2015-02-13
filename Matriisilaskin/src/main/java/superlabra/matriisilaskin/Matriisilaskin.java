@@ -39,6 +39,12 @@ public class Matriisilaskin
         matriisi2.transpoosi();
         System.out.println(matriisi2.toString());
         
+        Matriisivarasto varasto = new Matriisivarasto();
+        System.out.println("Merkkijono: 4,3,1.5,100;6,3,0,0.004;3,70,-4,1");
+        String merkkijono = "4,3,1.5,100;6,3,0,0.004;3,70,-4,1";
+        Matriisi matriisi = varasto.muutaMatriisiksi(merkkijono, 3, 4);
+        System.out.println(matriisi.toString());
+        
     }
     
     

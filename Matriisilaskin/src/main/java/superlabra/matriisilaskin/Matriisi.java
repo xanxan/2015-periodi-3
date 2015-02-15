@@ -13,11 +13,17 @@ import superlabra.matriisilaskin.Matriisirajapinta;
 public class Matriisi implements Matriisirajapinta {
     
     private final double [][] matriisi;
+    private String nimi;
 
     public Matriisi(double[][] matriisi) {
-      
+        this.nimi = "M";
         this.matriisi = matriisi;
     } 
+    
+    public Matriisi(double[][] matriisi, String nimi) {
+        this.nimi = "nimi";
+        this.matriisi = matriisi;
+    }
     
     @Override
     public int getLeveys() {
@@ -33,6 +39,10 @@ public class Matriisi implements Matriisirajapinta {
     public double[][] getMatriisi() {
         return this.matriisi;
         
+    }
+    
+    public String getNimi() {
+        return this.nimi;
     }
     /**
      * Metodi laskee matriisin ja vakioluvun skalaaritulon.

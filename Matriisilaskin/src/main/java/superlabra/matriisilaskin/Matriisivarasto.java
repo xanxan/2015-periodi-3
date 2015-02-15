@@ -5,11 +5,47 @@ package superlabra.matriisilaskin;
  * @author anna
  */
 public class Matriisivarasto {
-   
+    private Matriisi [] varasto; // matriisit talletetaan tähän.
     
     public Matriisivarasto() {
-        
+        this.varasto = new Matriisi[20];
     }
+    /**
+     * LisaaVarastoon() lisää uuden matriisin varastoon. 
+     */
+    public void lisaaVarastoon(Matriisi m) {
+        varasto[this.matriisejaVarastossa()] = m;
+    }
+    /**
+     * etsiVarastosta etsii matriisin varastosta nimen avulla.
+     * @param nimi matriisin nimi
+     * @return matriisi
+     */
+    public Matriisi etsiVarastosta(String nimi) {
+        for (Matriisi m : varasto) {
+            if (m.getNimi().equals(nimi)) {
+                return m;
+            }
+        }
+        return null;
+    }
+    /**
+     * matriisejaVarastossa() palauttaa tallatettujen matriisin lukumäärän.
+     * @return matriisien lukumäärä
+     */
+    public int matriisejaVarastossa() {
+        int luku = 0;
+        for (int i = 0; i < varasto.length; i++) {
+            if (varasto[i] == null) {
+                break;
+                
+            } else {
+                luku++;
+            }
+        }
+        return luku;
+    }
+    
     /**
      * muutaMatriisiksi muuttaa annetun merkkijonon matriisitaulukoksi.
      * @param merkkijono annettu merkkijono

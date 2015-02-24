@@ -90,10 +90,10 @@ public class MatriisiTest {
        for (int i = 0; i < x.getPituus(); i++) {
            for (int j = 0; j < x.getLeveys(); j++) {
                
-             assertEquals(ma[i][j], x.skalaaritulo(a)[i][j], 0.001);
-             assertEquals(m1[i][j], x.skalaaritulo(b)[i][j], 0.001);
-             assertEquals(mc[i][j], x.skalaaritulo(c)[i][j], 0.001);
-             assertEquals(md[i][j], x.skalaaritulo(d)[i][j], 0.001);
+             assertEquals(ma[i][j], x.skalaaritulo(a).getMatriisi()[i][j], 0.001);
+             assertEquals(m1[i][j], x.skalaaritulo(b).getMatriisi()[i][j], 0.001);
+             assertEquals(mc[i][j], x.skalaaritulo(c).getMatriisi()[i][j], 0.001);
+             assertEquals(md[i][j], x.skalaaritulo(d).getMatriisi()[i][j], 0.001);
        
            }
        }
@@ -121,7 +121,7 @@ public class MatriisiTest {
          double[][] summa = {{7,0,5},
                          {-3,3,101}};
          
-         assertArrayEquals(summa, x.matriisiensumma(y));
+         assertArrayEquals(summa, x.matriisiensumma(y).getMatriisi());
          
          
          
@@ -135,7 +135,7 @@ public class MatriisiTest {
           double[][] erotus = {{-3,0,-15},
                            {5,9,99}};
          
-          assertArrayEquals(erotus, x.matriisienerotus(y));
+          assertArrayEquals(erotus, x.matriisienerotus(y).getMatriisi());
     }
 
     /**
@@ -186,8 +186,8 @@ public class MatriisiTest {
         double[][] transpoosi = {{0,10},
                               {1, -9}};
         double[][] yksi = {{5}};
-        assertArrayEquals(transpoosi, z.transpoosi());
-        assertArrayEquals(yksi, k.transpoosi());
+        assertArrayEquals(transpoosi, z.transpoosi().getMatriisi());
+        assertArrayEquals(yksi, k.transpoosi().getMatriisi());
         
     }
 }

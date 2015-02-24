@@ -20,9 +20,8 @@ public class Matriisi implements Matriisirajapinta {
         this.matriisi = matriisi;
     } 
     
-    public Matriisi(double[][] matriisi, String nimi) {
-        this.nimi = "nimi";
-        this.matriisi = matriisi;
+    public void setNimi(String nimi) {
+        this.nimi = nimi;
     }
     
     @Override
@@ -51,7 +50,7 @@ public class Matriisi implements Matriisirajapinta {
      */
 
    
-    public double[][] skalaaritulo(int kerroin) {
+    public Matriisi skalaaritulo(double kerroin) {
         double[][] tulo = new double[this.getPituus()][this.getLeveys()];
         for (int i = 0; i < this.getPituus(); i++) {
             for (int j = 0; j < this.getLeveys(); j++) {
@@ -59,7 +58,7 @@ public class Matriisi implements Matriisirajapinta {
             }
         }
         
-        return tulo;
+        return new Matriisi(tulo);
         
     }
     
@@ -68,7 +67,7 @@ public class Matriisi implements Matriisirajapinta {
      * @param m2 summattava matriisi
      * @return summamatriisi
      */
-    public double[][] matriisiensumma(Matriisi m2) {
+    public Matriisi matriisiensumma(Matriisi m2) {
         double[][] summa = new double[this.getPituus()][this.getLeveys()];
         if (this.koontarkistus(m2)) {
              for (int i = 0; i < this.getPituus(); i++) {
@@ -77,7 +76,7 @@ public class Matriisi implements Matriisirajapinta {
                 }
               }
         
-             return summa;
+             return new Matriisi(summa);
         } else {
             throw new IllegalArgumentException("Et voi summata erikokoisia matriiseja!");
         }
@@ -87,7 +86,7 @@ public class Matriisi implements Matriisirajapinta {
      * @param m2 vähennettävä matriisi
      * @return erotusmatriisi
      */
-    public double[][] matriisienerotus(Matriisi m2) {
+    public Matriisi matriisienerotus(Matriisi m2) {
         double[][] erotus = new double[this.getPituus()][this.getLeveys()];
         if (this.koontarkistus(m2)) {
             for (int i = 0; i < this.getPituus(); i++) {
@@ -95,7 +94,7 @@ public class Matriisi implements Matriisirajapinta {
                     erotus[i][j] = this.matriisi[i][j] - m2.matriisi[i][j];
                 }
             }
-            return erotus;
+            return new Matriisi(erotus);
         } else {
             throw new IllegalArgumentException("Et voi erottaa erikokoisia matriiseja!");
         }
@@ -162,7 +161,7 @@ public class Matriisi implements Matriisirajapinta {
      * @return matriisin transpoosi
      */
     
-    public double [][] transpoosi() {
+    public Matriisi transpoosi() {
         
         double[][] transpoosi = new double[this.getLeveys()][this.getPituus()];
         
@@ -172,7 +171,7 @@ public class Matriisi implements Matriisirajapinta {
                 }
         }
         
-        return transpoosi;
+        return new Matriisi(transpoosi);
     }
     /**
     * toString() tulostaa matriisin. 

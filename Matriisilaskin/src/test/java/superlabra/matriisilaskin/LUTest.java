@@ -133,9 +133,9 @@ public class LUTest {
            System.out.println("inv3");
            laskin.kaanteismatriisi(t); //algoritmin tulos
            System.out.println(t.toString());
-//        assertArrayEquals(inv1, y.kaanteismatriisi());
-//        assertArrayEquals(inv2, u.kaanteismatriisi());
-//        assertArrayEquals(inv3, t.kaanteismatriisi());
+        assertArrayEquals(inv1, y.getMatriisi());
+        assertArrayEquals(inv2, u.getMatriisi());
+        assertArrayEquals(inv3, t.getMatriisi());
     }
     
 }

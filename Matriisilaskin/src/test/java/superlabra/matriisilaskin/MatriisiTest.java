@@ -156,7 +156,26 @@ public class MatriisiTest {
         assertArrayEquals(tulo1, z.matriisitulo(j).getMatriisi());
     }
     @Test
-    public void testIsoMatriisitulo() {
+    public void strassentuloToimii() {
+        double[][] m1 = {{1,1,1,1},
+                         {1,1,1,1},
+                         {1,1,1,1},
+                         {1,1,1,1}};
+        double[][] m2 = {{1,1,1,1},
+                         {1,1,1,1},
+                         {1,1,1,1},
+                         {1,1,1,1}};
+        double[][] tulo = {{4,4,4,4}, 
+                           {4,4,4,4}, 
+                           {4,4,4,4},
+                           {4,4,4,4}};
+        Matriisi m = new Matriisi(m1);
+        Matriisi n = new Matriisi(m2);
+        
+        assertArrayEquals(tulo, m.strassentulo(n).getMatriisi());
+    }
+    @Test
+    public void isoMatriisituloToimii() {
         double[][] m1 = lukujonomatriisi(10,6);
         double[][] m2 = lukujonomatriisi(5,10);
         double[][] tulo = {{1705, 1760, 1815, 1870, 1925}, 
@@ -169,21 +188,6 @@ public class MatriisiTest {
         Matriisi n = new Matriisi(m2);
         
         assertArrayEquals(tulo, m.matriisitulo(n).getMatriisi());
-    }
-    @Test
-    public void strassentuloToimii() {
-        double[][] m1 = lukujonomatriisi(10,6);
-        double[][] m2 = lukujonomatriisi(5,10);
-        double[][] tulo = {{1705, 1760, 1815, 1870, 1925}, 
-                           {4055, 4210, 4365, 4520, 4675}, 
-                           {6405, 6660, 6915, 7170, 7425},
-                           {8755, 9110, 9465, 9820, 10175}, 
-                           {11105, 11560, 12015, 12470, 12925}, 
-                           {13455, 14010, 14565, 15120, 15675}};
-        Matriisi m = new Matriisi(m1);
-        Matriisi n = new Matriisi(m2);
-        
-        assertArrayEquals(tulo, m.strassentulo(n).getMatriisi());
     }
     /**
      * Test of koontarkistus method, of class Matriisi.

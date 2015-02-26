@@ -9,9 +9,13 @@ public class Matriisilaskin
     public static void main( String[] args )
     {
          // Testikenttä 
-        
+        double[][] m1 = new double[][] {{1,1,1,1},{1,1,1,1},{1,1,1,1},{1,1,1,1}};
+        double[][] m2 = new double[][] {{1,1,1,1},{1,1,1,1},{1,1,1,1},{1,1,1,1}};
+        Matriisi M1 = new Matriisi(m1);
+        Matriisi M2 = new Matriisi(m2);
+        System.out.println(M1.strassentulo(M2).toString());
         Kayttoliittyma k = new Kayttoliittyma();
-        k.Kaynnista();
+//        k.Kaynnista();
 //       LU laskin = new LU();
 //       
 //       double[][] m = new double[][] {{2,-1,-2},{-4,6,3},{-4,-2,8}};

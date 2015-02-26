@@ -139,18 +139,26 @@ public class Matriisi implements Matriisirajapinta {
              
              Matriisi A = this.laajennaMatriisi();
              Matriisi B = m2.laajennaMatriisi();
-             
+             System.out.println("l " +A.getLeveys());
+             System.out.println("l/2 " +A.getLeveys()/2);
+             System.out.println("p " +A.getPituus());
+             System.out.println("p/2 "+ A.getPituus()/2);
              // Laajennetaan matriisi 2^n potenssiin ja jaetaan matriisi A alamatriiseihin A11, A12, A21, A22
-             Matriisi A11 =  A.alamatriisi(0, 0, A.getLeveys()/2, A.getPituus()/2);
-             Matriisi A12 = A.alamatriisi(A.getLeveys()/2, 0, A.getLeveys(), A.getPituus()/2);
-             Matriisi A21 = A.alamatriisi(0, A.getPituus()/2, A.getLeveys()/2, A.getPituus());
-             Matriisi A22 = A.alamatriisi(A.getLeveys()/2, A.getPituus()/2, A.getLeveys(), A.getPituus());
+             Matriisi A11 =  A.alamatriisi(0,0);
+             System.out.println("A11: " + A11.getLeveys() + " x " + A11.getPituus());
+             Matriisi A12 = A.alamatriisi(A.getLeveys()/2, 0);
+             System.out.println("A12: " + A12.getLeveys() + " x " + A12.getPituus());
+             Matriisi A21 = A.alamatriisi(0, A.getPituus()/2);
+             System.out.println("A21: " + A21.getLeveys() + " x " + A21.getPituus());
+             Matriisi A22 = A.alamatriisi(A.getLeveys()/2, A.getPituus()/2);
+             System.out.println("A22: " + A22.getLeveys() + " x " + A22.getPituus());
              // ja matriisi B alamatriiseihin B11, B12, B21, B22.
-             Matriisi B11 =  B.alamatriisi(0, 0, B.getLeveys()/2, B.getPituus()/2);
-             Matriisi B12 = B.alamatriisi(B.getLeveys()/2, 0, B.getLeveys(), B.getPituus()/2);
-             Matriisi B21 = B.alamatriisi(0, B.getPituus()/2, B.getLeveys()/2, B.getPituus());
-             Matriisi B22 = B.alamatriisi(B.getLeveys()/2, B.getPituus()/2, B.getLeveys(), B.getPituus());
-             
+             Matriisi B11 =  B.alamatriisi(0, 0);
+             System.out.println("B11: " + B11.getLeveys() + " x " + B11.getPituus());
+             Matriisi B12 = B.alamatriisi(B.getLeveys()/2, 0);
+             Matriisi B21 = B.alamatriisi(0, B.getPituus()/2);
+             Matriisi B22 = B.alamatriisi(B.getLeveys()/2, B.getPituus()/2);
+             System.out.println("B22: " + B22.getLeveys() + " x " + B22.getPituus());
              // P1 = (A11+A22)*(B11+B22) kutsutaan strassentuloa rekursiivisesti
              Matriisi P1 = A11.matriisiensumma(A22).strassentulo(B11.matriisiensumma(B22));
              // P2 = (A21+A22)*B11 kutsutaan strassentuloa rekursiivisesti
@@ -206,13 +214,15 @@ public class Matriisi implements Matriisirajapinta {
             y++;
         }
     }
-    public Matriisi alamatriisi(int alkuleveys, int alkupituus, int loppuleveys, int loppupituus) {
-        double[][] matriisi = new double[loppupituus][loppuleveys];
+    public Matriisi alamatriisi(int alkuleveys, int alkupituus) {
+        double[][] matriisi = new double[this.getPituus()/2][this.getLeveys()/2];
         
-        for (int i =alkupituus; i < loppupituus; i++) {
-            for (int j = alkuleveys; j < loppuleveys; j++) {
-                matriisi[i][j] = this.getMatriisi()[i][j];
+        for (int i =0; i < matriisi.length; i++) {
+            for (int j = 0; j < matriisi[0].length; j++) {
+                matriisi[i][j] = this.getMatriisi()[alkupituus][alkuleveys];
+                alkuleveys++;
             }
+            alkupituus++;
         }
         return new Matriisi(matriisi);
     }

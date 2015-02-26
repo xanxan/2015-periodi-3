@@ -130,6 +130,89 @@ public class Matriisi implements Matriisirajapinta {
             
     }
     /**
+     * strassentulo laskee kahden suurikokoisen matriisin tulon strassen algoritmilla.
+     * @param m2 kerrottava matriisi
+     * @return tulomatriisi
+     */
+    public Matriisi strassentulo(Matriisi m2) {
+        if (this.onkoKerrottavissa(m2)) {
+             double[][] C = new double[this.getPituus()][m2.getLeveys()];
+             Matriisi A = this.laajennaMatriisi();
+             Matriisi B = m2.laajennaMatriisi();
+             
+             // Laajennetaan matriisi 2^n potenssiin ja jaetaan matriisi A alamatriiseihin A11, A12, A21, A22
+             Matriisi A11 =  A.alamatriisi(0, 0, A.getLeveys()/2, A.getPituus()/2);
+             Matriisi A12 = A.alamatriisi(A.getLeveys()/2, 0, A.getLeveys(), A.getPituus()/2);
+             Matriisi A21 = A.alamatriisi(0, A.getPituus()/2, A.getLeveys()/2, A.getPituus());
+             Matriisi A22 = A.alamatriisi(A.getLeveys()/2, A.getPituus()/2, A.getLeveys(), A.getPituus());
+             // ja matriisi B alamatriiseihin B11, B12, B21, B22.
+             Matriisi B11 =  B.alamatriisi(0, 0, B.getLeveys()/2, B.getPituus()/2);
+             Matriisi B12 = B.alamatriisi(B.getLeveys()/2, 0, B.getLeveys(), B.getPituus()/2);
+             Matriisi B21 = B.alamatriisi(0, B.getPituus()/2, B.getLeveys()/2, B.getPituus());
+             Matriisi B22 = B.alamatriisi(B.getLeveys()/2, B.getPituus()/2, B.getLeveys(), B.getPituus());
+             
+             // P1 = (A11+A22)*(B11+B22) kutsutaan strassentuloa rekursiivisesti
+             Matriisi P1 = A11.matriisiensumma(A22).strassentulo(B11.matriisiensumma(B22));
+             // P2 = (A21+A22)*B11 kutsutaan strassentuloa rekursiivisesti
+             Matriisi P2 = A21.matriisiensumma(A22).strassentulo(B11);
+             // P3 = A11*(B12-B22) kutsutaan strassentuloa rekursiivisesti
+             Matriisi P3 = A11.strassentulo(B12.matriisienerotus(B22));
+             // P4 = A22*(B21-B11) kutsutaan strassentuloa rekursiivisesti
+             Matriisi P4 = A22.strassentulo(B21.matriisienerotus(B11));
+             // P5 = (A11+A12)*B22 kutsutaan strassentuloa rekursiivisesti
+             Matriisi P5 = A11.matriisiensumma(A12).strassentulo(B22);
+             // P6 = (A21-A11)*(B11+B12) kutsutaan strassentuloa rekursiivisesti
+             Matriisi P6 = A21.matriisienerotus(A11).strassentulo(B11.matriisiensumma(B12));
+             // P7 = (A12-A22)*(B21+B22) kutsutaan strassentuloa rekursiivisesti
+             Matriisi P7 = A12.matriisienerotus(A22).strassentulo(B21.matriisiensumma(B22));
+             
+             // C11 = P1+P4-P5+P7
+             Matriisi C11 = P1.matriisiensumma(P4).matriisienerotus(P5).matriisiensumma(P7);
+             // C12 = P3+P5
+             Matriisi C12 = P3.matriisiensumma(P5);
+             // C21 = P2+P4
+             Matriisi C21 = P2.matriisiensumma(P4);
+             // C22 = P1-P2+P3+P6
+             Matriisi C22 = P1.matriisienerotus(P2).matriisiensumma(P3).matriisiensumma(P6);
+             
+             // Kootaan alamatriisit C11, C12, C21, C22 matriisiksi C ja return.
+            
+             
+             return new Matriisi(C);
+        } else {
+            throw new IllegalArgumentException("Et voi kertoa vääränkokoisia matriiseja!");
+        }
+    }
+   
+    public Matriisi alamatriisi(int alkuleveys, int alkupituus, int loppuleveys, int loppupituus) {
+        double[][] matriisi = new double[loppupituus][loppuleveys];
+        
+        for (int i =alkupituus; i < loppupituus; i++) {
+            for (int j = alkuleveys; j < loppuleveys; j++) {
+                matriisi[i][j] = this.getMatriisi()[i][j];
+            }
+        }
+        return new Matriisi(matriisi);
+    }
+    /**
+     * palauttaa annetun matriisin 2^n * 2^n muodossa.
+     * @param m annettu matriisi.
+     * @return 2^n*2^n matriisi.
+     */
+    public Matriisi laajennaMatriisi() {
+        
+        int sivu = Matriisi.seuraavaKahdenPotenssi(Math.max(this.getPituus(), this.getLeveys()));
+        double[][] matriisi = new double [sivu][sivu];
+        
+        for (int i = 0; i< this.getPituus(); i++) {
+            for (int j = 0; j < this.getLeveys(); j++) {
+                matriisi[i][j] = this.getMatriisi()[i][j];
+            }
+        }
+        
+        return new Matriisi(matriisi);
+    }
+    /**
      * onkokerrottavissa tarkistaa, että matriisien koot mahdollistavat matriisikertolaskun.
      * @param m2
      * @return boolean
@@ -155,7 +238,21 @@ public class Matriisi implements Matriisirajapinta {
      public boolean onNelio() {
         return this.getPituus() == this.getLeveys();
     }
-     
+    /**
+     * kahdenPotenssi() palauttaa annetusta vakiosta seuraavan kahden potenssin.
+     * @param n tutkittava luku.
+     * @return luku joka on kahden potenssi.
+     */
+    public static int seuraavaKahdenPotenssi(int n) {
+       int apu = Integer.highestOneBit(n);
+       if (apu == n) {
+           return n;
+       } else {
+           return apu * 2;
+       }
+        
+    } 
+   
     /**
      * Transpoosi() laskee matriisin transpoosin.
      * @return matriisin transpoosi

@@ -170,6 +170,21 @@ public class MatriisiTest {
         
         assertArrayEquals(tulo, m.matriisitulo(n).getMatriisi());
     }
+    @Test
+    public void strassentuloToimii() {
+        double[][] m1 = lukujonomatriisi(10,6);
+        double[][] m2 = lukujonomatriisi(5,10);
+        double[][] tulo = {{1705, 1760, 1815, 1870, 1925}, 
+                           {4055, 4210, 4365, 4520, 4675}, 
+                           {6405, 6660, 6915, 7170, 7425},
+                           {8755, 9110, 9465, 9820, 10175}, 
+                           {11105, 11560, 12015, 12470, 12925}, 
+                           {13455, 14010, 14565, 15120, 15675}};
+        Matriisi m = new Matriisi(m1);
+        Matriisi n = new Matriisi(m2);
+        
+        assertArrayEquals(tulo, m.strassentulo(n).getMatriisi());
+    }
     /**
      * Test of koontarkistus method, of class Matriisi.
      */
@@ -190,4 +205,17 @@ public class MatriisiTest {
         assertArrayEquals(yksi, k.transpoosi().getMatriisi());
         
     }
+    
+    @Test
+    public void kahdenPotenssiToimii() {
+        assertEquals(1024, Matriisi.seuraavaKahdenPotenssi(513));
+        assertEquals(512, Matriisi.seuraavaKahdenPotenssi(512));
+        assertEquals(0, Matriisi.seuraavaKahdenPotenssi(0));
+        assertEquals(1, Matriisi.seuraavaKahdenPotenssi(1));
+        assertEquals(2, Matriisi.seuraavaKahdenPotenssi(2));
+        assertEquals(8, Matriisi.seuraavaKahdenPotenssi(5));
+        assertEquals(2048, Matriisi.seuraavaKahdenPotenssi(2048));
+        assertEquals(4096, Matriisi.seuraavaKahdenPotenssi(2586));
+        assertEquals(2048, Matriisi.seuraavaKahdenPotenssi(2047));
+    }   
 }

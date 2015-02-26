@@ -3,7 +3,7 @@ package superlabra.matriisilaskin;
 import java.util.Scanner;
 
 /**
- *  Tekstikäyttöliittymän lopullinen toteutus tulee tänne.
+ *Ohjelman tekstikäyttöliittymä.
  * @author anna
  */
 public class Kayttoliittyma {
@@ -17,7 +17,9 @@ public class Kayttoliittyma {
             this.varasto = new Matriisivarasto();
             this.laskin = new LU();
         }
-        
+        /**
+         * Käynnistää ohjelman ja ottaa vastaan komennot.
+         */
         public void Kaynnista() {
             
             
@@ -54,7 +56,10 @@ public class Kayttoliittyma {
             
             }
         }
-        
+        /**
+         * Hoitaa uuden matriisin vastaanottamisen.
+         * 
+         */
         public void uusiMatriisi() {
             System.out.println("Anna matriisin nimi:");
             String nimi = lukija.nextLine();
@@ -69,7 +74,9 @@ public class Kayttoliittyma {
             System.out.println(nimi + "= \n" + m.toString());
             
         }
-        
+        /**
+         * Tulostaa skalaaritulon.
+         */
         public void skalaaritulo() {
             System.out.println("Anna matriisin nimi:");
             String nimi = lukija.nextLine();
@@ -81,7 +88,9 @@ public class Kayttoliittyma {
             tallenna(tulo);
         
         }
-        
+        /**
+         * Tulostaa matriisitulon.
+         */
         public void matriisientulo() {
             System.out.println("Anna ensimmäisen matriisin nimi:");
             String nimi1 = lukija.nextLine();
@@ -93,7 +102,9 @@ public class Kayttoliittyma {
             System.out.println("tulo = \n" + tulo.toString());
             tallenna(tulo);
         }
-        
+        /**
+         * Tulostaa yhteenlaskun.
+         */
         public void yhteenlasku() {
             System.out.println("Anna ensimmäisen matriisin nimi:");
             String nimi1 = lukija.nextLine();
@@ -105,7 +116,9 @@ public class Kayttoliittyma {
             System.out.println("summa = \n" + summa.toString());
             tallenna(summa);
         }
-        
+        /**
+         * Tulostaa vähennyslaskun.
+         */
         public void vahennyslasku() {
             System.out.println("Anna ensimmäisen matriisin nimi:");
             String nimi1 = lukija.nextLine();
@@ -117,6 +130,9 @@ public class Kayttoliittyma {
             System.out.println("erotus = \n" + erotus.toString());
             tallenna(erotus);
         }
+        /**
+         * Tulostaa transpoosin.
+         */
         public void transpoosi() {
             System.out.println("Anna matriisin nimi:");
             String nimi = lukija.nextLine();
@@ -125,7 +141,9 @@ public class Kayttoliittyma {
             System.out.println("transpoosi = \n" + transpoosi.toString());
             tallenna(transpoosi);
         }
-        
+        /**
+         * Tulostaa determinantin.
+         */
         public void determinantti() {
             System.out.println("Anna matriisin nimi:");
             String nimi = lukija.nextLine();
@@ -134,7 +152,9 @@ public class Kayttoliittyma {
             Double det = laskin.determinantti(d);
             System.out.println("Matriisin " + nimi + "determinantti = " + det);
         }
-        
+        /**
+         * Tulostaa alakolmiomatriisin.
+         */
         public void alakolmiomatriisi() {
             System.out.println("Anna matriisin nimi:");
             String nimi = lukija.nextLine();
@@ -143,7 +163,9 @@ public class Kayttoliittyma {
             System.out.println("L-matriisi = \n" + d.toString());
             tallenna(d);
         }
-        
+        /**
+         * Tulostaa yläkolmiomatriisin.
+         */
         public void ylakolmiomatriisi() {
             System.out.println("Anna matriisin nimi:");
             String nimi = lukija.nextLine();
@@ -152,7 +174,9 @@ public class Kayttoliittyma {
             System.out.println("U-matriisi = \n" + d.toString());
             tallenna(d);
         }
-        
+        /**
+         * Tulostaa käänteismatriisin.
+         */
         public void kaanteismatriisi() {
             System.out.println("Anna matriisin nimi:");
             String nimi = lukija.nextLine();
@@ -161,6 +185,10 @@ public class Kayttoliittyma {
             System.out.println("Käänteismatriisi = \n" + inv.toString());
             tallenna(inv);
         }
+        /**
+         * Tallentaa laskuoperaation tulosmatriisin ohjelmaan.
+         * @param m 
+         */
         public void tallenna(Matriisi m) {
             System.out.println("Tallenna matriisi? (k/enter)");
             String vastaus = lukija.nextLine();

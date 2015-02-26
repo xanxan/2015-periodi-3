@@ -136,7 +136,7 @@ public class Matriisi implements Matriisirajapinta {
      */
     public Matriisi strassentulo(Matriisi m2) {
         if (this.onkoKerrottavissa(m2)) {
-             double[][] C = new double[this.getPituus()][m2.getLeveys()];
+             
              Matriisi A = this.laajennaMatriisi();
              Matriisi B = m2.laajennaMatriisi();
              
@@ -176,14 +176,36 @@ public class Matriisi implements Matriisirajapinta {
              Matriisi C22 = P1.matriisienerotus(P2).matriisiensumma(P3).matriisiensumma(P6);
              
              // Kootaan alamatriisit C11, C12, C21, C22 matriisiksi C ja return.
-            
+            double[][] C = new double[C11.getPituus()+C21.getPituus()][C11.getLeveys()+C12.getLeveys()];
+            liitaMatriisiin(C, C11, 0, C11.getLeveys(), 0, C11.getPituus());
+            liitaMatriisiin(C, C12, C11.getLeveys(), C12.getLeveys()+C11.getLeveys(), 0, C12.getPituus());
+            liitaMatriisiin(C, C21, 0, C21.getLeveys(), C11.getPituus(), C11.getPituus()+C21.getPituus());
+            liitaMatriisiin(C, C22, C21.getLeveys(), C21.getLeveys()+C22.getLeveys(), C12.getPituus(), C12.getPituus()+C22.getPituus());
              
-             return new Matriisi(C);
+             return pienennaMatriisi(C, this.getPituus(), m2.getLeveys());
         } else {
             throw new IllegalArgumentException("Et voi kertoa vääränkokoisia matriiseja!");
         }
     }
-   
+    public Matriisi pienennaMatriisi(double[][] m1, int leveys, int pituus) {
+        double[][] m2 = new double[pituus][leveys];
+        for (int i = 0; i <pituus; i++) {
+            for (int j = 0; j<leveys; j++) {
+                m2[i][j] = m1[i][j];
+            }
+        }
+        return new Matriisi(m2);
+    }
+    public void liitaMatriisiin(double[][] m, Matriisi alamatriisi, int alkuleveys, int loppuleveys, int alkupituus, int loppupituus) {
+        int x = 0; int y = 0;
+        for (int i = alkupituus; i<loppupituus; i++) {
+            for (int j = alkuleveys; j<loppuleveys; j++) {
+                m[i][j] = alamatriisi.getMatriisi()[y][x];
+                x++;
+            }
+            y++;
+        }
+    }
     public Matriisi alamatriisi(int alkuleveys, int alkupituus, int loppuleveys, int loppupituus) {
         double[][] matriisi = new double[loppupituus][loppuleveys];
         

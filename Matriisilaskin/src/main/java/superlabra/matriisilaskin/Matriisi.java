@@ -214,15 +214,16 @@ public class Matriisi implements Matriisirajapinta {
             y++;
         }
     }
-    public Matriisi alamatriisi(int alkuleveys, int alkupituus) {
+    public Matriisi alamatriisi(final int alkuleveys, final int alkupituus) {
         double[][] matriisi = new double[this.getPituus()/2][this.getLeveys()/2];
-        
+        int x = alkuleveys; int y = alkupituus;
         for (int i =0; i < matriisi.length; i++) {
             for (int j = 0; j < matriisi[0].length; j++) {
-                matriisi[i][j] = this.getMatriisi()[alkupituus][alkuleveys];
-                alkuleveys++;
-            }
-            alkupituus++;
+                matriisi[i][j] = this.getMatriisi()[y][x];
+                x++;
+            } y++;
+              x = alkuleveys;
+            
         }
         return new Matriisi(matriisi);
     }

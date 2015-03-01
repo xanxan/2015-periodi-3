@@ -14,7 +14,7 @@ public class Matriisilaskin
         Matriisi M1 = new Matriisi(m1);
         Matriisi M2 = new Matriisi(m2);
         System.out.println(M1.strassentulo(M2).toString());
-        Kayttoliittyma k = new Kayttoliittyma();
+//        Kayttoliittyma k = new Kayttoliittyma();
 //        k.Kaynnista();
 //       LU laskin = new LU();
 //       

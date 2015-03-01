@@ -139,58 +139,64 @@ public class Matriisi implements Matriisirajapinta {
              
              Matriisi A = this.laajennaMatriisi();
              Matriisi B = m2.laajennaMatriisi();
-             System.out.println("l " +A.getLeveys());
-             System.out.println("l/2 " +A.getLeveys()/2);
-             System.out.println("p " +A.getPituus());
-             System.out.println("p/2 "+ A.getPituus()/2);
-             // Laajennetaan matriisi 2^n potenssiin ja jaetaan matriisi A alamatriiseihin A11, A12, A21, A22
-             Matriisi A11 =  A.alamatriisi(0,0);
-             System.out.println("A11: " + A11.getLeveys() + " x " + A11.getPituus());
-             Matriisi A12 = A.alamatriisi(A.getLeveys()/2, 0);
-             System.out.println("A12: " + A12.getLeveys() + " x " + A12.getPituus());
-             Matriisi A21 = A.alamatriisi(0, A.getPituus()/2);
-             System.out.println("A21: " + A21.getLeveys() + " x " + A21.getPituus());
-             Matriisi A22 = A.alamatriisi(A.getLeveys()/2, A.getPituus()/2);
-             System.out.println("A22: " + A22.getLeveys() + " x " + A22.getPituus());
-             // ja matriisi B alamatriiseihin B11, B12, B21, B22.
-             Matriisi B11 =  B.alamatriisi(0, 0);
-             System.out.println("B11: " + B11.getLeveys() + " x " + B11.getPituus());
-             Matriisi B12 = B.alamatriisi(B.getLeveys()/2, 0);
-             Matriisi B21 = B.alamatriisi(0, B.getPituus()/2);
-             Matriisi B22 = B.alamatriisi(B.getLeveys()/2, B.getPituus()/2);
-             System.out.println("B22: " + B22.getLeveys() + " x " + B22.getPituus());
-             // P1 = (A11+A22)*(B11+B22) kutsutaan strassentuloa rekursiivisesti
-             Matriisi P1 = A11.matriisiensumma(A22).strassentulo(B11.matriisiensumma(B22));
-             // P2 = (A21+A22)*B11 kutsutaan strassentuloa rekursiivisesti
-             Matriisi P2 = A21.matriisiensumma(A22).strassentulo(B11);
-             // P3 = A11*(B12-B22) kutsutaan strassentuloa rekursiivisesti
-             Matriisi P3 = A11.strassentulo(B12.matriisienerotus(B22));
-             // P4 = A22*(B21-B11) kutsutaan strassentuloa rekursiivisesti
-             Matriisi P4 = A22.strassentulo(B21.matriisienerotus(B11));
-             // P5 = (A11+A12)*B22 kutsutaan strassentuloa rekursiivisesti
-             Matriisi P5 = A11.matriisiensumma(A12).strassentulo(B22);
-             // P6 = (A21-A11)*(B11+B12) kutsutaan strassentuloa rekursiivisesti
-             Matriisi P6 = A21.matriisienerotus(A11).strassentulo(B11.matriisiensumma(B12));
-             // P7 = (A12-A22)*(B21+B22) kutsutaan strassentuloa rekursiivisesti
-             Matriisi P7 = A12.matriisienerotus(A22).strassentulo(B21.matriisiensumma(B22));
              
-             // C11 = P1+P4-P5+P7
-             Matriisi C11 = P1.matriisiensumma(P4).matriisienerotus(P5).matriisiensumma(P7);
-             // C12 = P3+P5
-             Matriisi C12 = P3.matriisiensumma(P5);
-             // C21 = P2+P4
-             Matriisi C21 = P2.matriisiensumma(P4);
-             // C22 = P1-P2+P3+P6
-             Matriisi C22 = P1.matriisienerotus(P2).matriisiensumma(P3).matriisiensumma(P6);
+             if (A.getLeveys() < 2 && B.getLeveys() <2) {
+                 Matriisi tulo = A.matriisitulo(B);
+                 return pienennaMatriisi(tulo.getMatriisi(), this.getPituus(), m2.getLeveys());
+             } else {
+                System.out.println("l " +A.getLeveys());
+                System.out.println("l/2 " +A.getLeveys()/2);
+                System.out.println("p " +A.getPituus());
+                System.out.println("p/2 "+ A.getPituus()/2);
+                // Laajennetaan matriisi 2^n potenssiin ja jaetaan matriisi A alamatriiseihin A11, A12, A21, A22
+                Matriisi A11 =  A.alamatriisi(0,0);
+                System.out.println("A11: " + A11.getLeveys() + " x " + A11.getPituus());
+                Matriisi A12 = A.alamatriisi(A.getLeveys()/2, 0);
+                System.out.println("A12: " + A12.getLeveys() + " x " + A12.getPituus());
+                Matriisi A21 = A.alamatriisi(0, A.getPituus()/2);
+                System.out.println("A21: " + A21.getLeveys() + " x " + A21.getPituus());
+                Matriisi A22 = A.alamatriisi(A.getLeveys()/2, A.getPituus()/2);
+                System.out.println("A22: " + A22.getLeveys() + " x " + A22.getPituus());
+                // ja matriisi B alamatriiseihin B11, B12, B21, B22.
+                Matriisi B11 =  B.alamatriisi(0, 0);
+                System.out.println("B11: " + B11.getLeveys() + " x " + B11.getPituus());
+                Matriisi B12 = B.alamatriisi(B.getLeveys()/2, 0);
+                Matriisi B21 = B.alamatriisi(0, B.getPituus()/2);
+                Matriisi B22 = B.alamatriisi(B.getLeveys()/2, B.getPituus()/2);
+                System.out.println("B22: " + B22.getLeveys() + " x " + B22.getPituus());
+                // P1 = (A11+A22)*(B11+B22) kutsutaan strassentuloa rekursiivisesti
+                Matriisi P1 = A11.matriisiensumma(A22).strassentulo(B11.matriisiensumma(B22));
+                // P2 = (A21+A22)*B11 kutsutaan strassentuloa rekursiivisesti
+                Matriisi P2 = A21.matriisiensumma(A22).strassentulo(B11);
+                // P3 = A11*(B12-B22) kutsutaan strassentuloa rekursiivisesti
+                Matriisi P3 = A11.strassentulo(B12.matriisienerotus(B22));
+                // P4 = A22*(B21-B11) kutsutaan strassentuloa rekursiivisesti
+                Matriisi P4 = A22.strassentulo(B21.matriisienerotus(B11));
+                 // P5 = (A11+A12)*B22 kutsutaan strassentuloa rekursiivisesti
+                Matriisi P5 = A11.matriisiensumma(A12).strassentulo(B22);
+                // P6 = (A21-A11)*(B11+B12) kutsutaan strassentuloa rekursiivisesti
+                Matriisi P6 = A21.matriisienerotus(A11).strassentulo(B11.matriisiensumma(B12));
+                // P7 = (A12-A22)*(B21+B22) kutsutaan strassentuloa rekursiivisesti
+                Matriisi P7 = A12.matriisienerotus(A22).strassentulo(B21.matriisiensumma(B22));
              
-             // Kootaan alamatriisit C11, C12, C21, C22 matriisiksi C ja return.
-            double[][] C = new double[C11.getPituus()+C21.getPituus()][C11.getLeveys()+C12.getLeveys()];
-            liitaMatriisiin(C, C11, 0, C11.getLeveys(), 0, C11.getPituus());
-            liitaMatriisiin(C, C12, C11.getLeveys(), C12.getLeveys()+C11.getLeveys(), 0, C12.getPituus());
-            liitaMatriisiin(C, C21, 0, C21.getLeveys(), C11.getPituus(), C11.getPituus()+C21.getPituus());
-            liitaMatriisiin(C, C22, C21.getLeveys(), C21.getLeveys()+C22.getLeveys(), C12.getPituus(), C12.getPituus()+C22.getPituus());
+                // C11 = P1+P4-P5+P7
+                Matriisi C11 = P1.matriisiensumma(P4).matriisienerotus(P5).matriisiensumma(P7);
+                // C12 = P3+P5
+                Matriisi C12 = P3.matriisiensumma(P5);
+                // C21 = P2+P4
+                Matriisi C21 = P2.matriisiensumma(P4);
+                // C22 = P1-P2+P3+P6
+                Matriisi C22 = P1.matriisienerotus(P2).matriisiensumma(P3).matriisiensumma(P6);
              
-             return pienennaMatriisi(C, this.getPituus(), m2.getLeveys());
+                // Kootaan alamatriisit C11, C12, C21, C22 matriisiksi C ja return.
+                double[][] C = new double[C11.getPituus()+C21.getPituus()][C11.getLeveys()+C12.getLeveys()];
+                liitaMatriisiin(C, C11, 0, C11.getLeveys(), 0, C11.getPituus());
+                liitaMatriisiin(C, C12, C11.getLeveys(), C12.getLeveys()+C11.getLeveys(), 0, C12.getPituus());
+                liitaMatriisiin(C, C21, 0, C21.getLeveys(), C11.getPituus(), C11.getPituus()+C21.getPituus());
+                liitaMatriisiin(C, C22, C21.getLeveys(), C21.getLeveys()+C22.getLeveys(), C12.getPituus(), C12.getPituus()+C22.getPituus());
+             
+                return pienennaMatriisi(C, this.getPituus(), m2.getLeveys());
+             }
         } else {
             throw new IllegalArgumentException("Et voi kertoa vääränkokoisia matriiseja!");
         }

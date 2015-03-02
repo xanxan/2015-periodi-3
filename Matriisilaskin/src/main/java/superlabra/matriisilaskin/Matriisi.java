@@ -140,7 +140,7 @@ public class Matriisi implements Matriisirajapinta {
              Matriisi A = this.laajennaMatriisi();
              Matriisi B = m2.laajennaMatriisi();
              
-             if (A.getLeveys() < 2 && B.getLeveys() <2) {
+             if (A.getLeveys() < 40 && B.getLeveys() <40) {
                  Matriisi tulo = A.matriisitulo(B);
                  return pienennaMatriisi(tulo.getMatriisi(), this.getPituus(), m2.getLeveys());
              } else {

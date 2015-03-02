@@ -39,6 +39,22 @@ public class MatriisiTest {
         }
         return matriisi;
     }
+    
+    private double[][] ykkosmatriisi(int leveys, int pituus) {
+    
+        double[][] matriisi = new double[pituus][leveys];
+        for (int i = 0; i< matriisi.length; i++) {
+            for (int j = 0; j<matriisi[0].length; j++) {
+                if (j == i) {
+                    matriisi[i][j] = 1;
+                } else {
+                    matriisi[i][j] = 0;
+                }
+                
+            }
+        }
+        return matriisi;
+    }
     private double[][] generoiMatriisi(int leveys, int pituus) {
         
         Random r = new Random();
@@ -173,6 +189,35 @@ public class MatriisiTest {
         Matriisi n = new Matriisi(m2);
         
         assertArrayEquals(tulo, m.strassentulo(n).getMatriisi());
+    }
+    
+    @Test
+    public void nollallaKerrottunaOnNollamatriisi() {
+        double [][] matriisi = generoiMatriisi(1000, 1000);
+        double [][] nollamatriisi = new double[1000][1000];
+        
+        Matriisi m = new Matriisi(matriisi);
+        Matriisi n = new Matriisi(nollamatriisi);
+        
+        assertArrayEquals(nollamatriisi, m.strassentulo(n).getMatriisi());
+    }
+    
+    @Test
+    public void yhdellaKerrottunaOnYkkosmatriisi() {
+        double[][] matriisi = generoiMatriisi(500, 500);
+        double[][] ykkosmatriisi = ykkosmatriisi(500,500);
+        
+        Matriisi m = new Matriisi(matriisi);
+        Matriisi n = new Matriisi(ykkosmatriisi);
+        
+        for (int i = 0; i < x.getPituus(); i++) {
+           for (int j = 0; j < x.getLeveys(); j++) {
+               
+             assertEquals(matriisi[i][j], m.strassentulo(n).getMatriisi()[i][j], 0.001);
+       
+           }
+       }
+       
     }
     @Test
     public void isoMatriisituloToimii() {

@@ -38,15 +38,58 @@ public class SuorituskykyTest {
         return matriisi;
         
     }
+     
     public long kulunutAika(long aloitusaika) {
         return System.nanoTime() - aloitusaika;
     }
+    
+    public long getNaiivinMatriisitulonAika(int sivu) {
+        double[][] matriisi1 = generoiMatriisi(sivu, sivu);
+        double[][] matriisi2 = generoiMatriisi(sivu, sivu);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.matriisitulo(m2);
+        
+        return kulunutAika(aloitusaika);
+    }
+    
+    public long getStrassentulonAika(int sivu) {
+        double[][] matriisi1 = generoiMatriisi(sivu, sivu);
+        double[][] matriisi2 = generoiMatriisi(sivu, sivu);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.strassentulo(m2);
+        
+        return kulunutAika(aloitusaika);
+    }
+     
     @Before
     public void setUp() {
         this.laskin = new LU();
     }
+    
     @Test
-    public void testMatriisikertolasku10x10() {
+    public void naiivinMatriisitulonAika1x1a() {
+        double[][] matriisi1 = generoiMatriisi(1, 1);
+        double[][] matriisi2 = generoiMatriisi(1, 1);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.matriisitulo(m2);
+        long kulunut = kulunutAika(aloitusaika);
+        
+        System.out.println("Matriisitulon vakioaika 1x1: " + kulunut);
+    }
+    @Test
+    public void naiivinMatriisitulonAika10x10() {
         
         double[][] matriisi1 = generoiMatriisi(10, 10);
         double[][] matriisi2 = generoiMatriisi(10, 10);
@@ -56,15 +99,31 @@ public class SuorituskykyTest {
         
         long aloitusaika = System.nanoTime();
         m1.matriisitulo(m2);
-        long lopetusaika = System.nanoTime();
-        long kulunut = lopetusaika - aloitusaika;
+        long kulunut = kulunutAika(aloitusaika);
         
-        System.out.println("Matriisilla 10x10: " + kulunut);
-        assertTrue(kulunut < 200000);
+        System.out.println("Matriisitulo 10x10: " + kulunut);
+        assertTrue(kulunut <= Math.pow(getNaiivinMatriisitulonAika(1), 3));
         
     }
     @Test
-    public void testMatriisikertolasku100x100() {
+    public void naiivinMatriisitulonAika50x50() {
+        
+        double[][] matriisi1 = generoiMatriisi(50, 50);
+        double[][] matriisi2 = generoiMatriisi(50, 50);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.matriisitulo(m2);
+        long kulunut = kulunutAika(aloitusaika);
+        
+        System.out.println("Matriisitulo 50x50: " + kulunut);
+        assertTrue(kulunut <= Math.pow(getNaiivinMatriisitulonAika(5), 3));
+        
+    }
+    @Test
+    public void naiivinMatriisitulonAika100x100() {
         
         double[][] matriisi1 = generoiMatriisi(100, 100);
         double[][] matriisi2 = generoiMatriisi(100, 100);
@@ -74,12 +133,138 @@ public class SuorituskykyTest {
         
         long aloitusaika = System.nanoTime();
         m1.matriisitulo(m2);
-        long lopetusaika = System.nanoTime();
-        long kulunut = lopetusaika - aloitusaika;
+        long kulunut = kulunutAika(aloitusaika);
         
-        System.out.println("Matriisilla 100x100: " + kulunut);
-        assertTrue(kulunut < 20000000);
+        System.out.println("Matriisitulo 100x100: " + kulunut);
+        assertTrue(kulunut <= Math.pow(getNaiivinMatriisitulonAika(10), 3));
         
+    }
+      @Test
+    public void naiivinMatriisitulonAika500x500() {
+        
+        double[][] matriisi1 = generoiMatriisi(500, 500);
+        double[][] matriisi2 = generoiMatriisi(500, 500);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.matriisitulo(m2);
+        long kulunut = kulunutAika(aloitusaika);
+        
+        System.out.println("Matriisitulo 500x500: " + kulunut);
+        assertTrue(kulunut <= Math.pow(getNaiivinMatriisitulonAika(50), 3));
+        
+    }
+    
+    @Test
+    public void naiivinMatriisitulonAika1000x1000() {
+        double[][] matriisi1 = generoiMatriisi(1000, 1000);
+        double[][] matriisi2 = generoiMatriisi(1000, 1000);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.matriisitulo(m2);
+        long kulunut = kulunutAika(aloitusaika);
+        
+        System.out.println("Matriisitulo 1000x1000: " + kulunut);
+        assertTrue(kulunut <= Math.pow(getNaiivinMatriisitulonAika(100), 3));
+    }
+    
+    @Test
+    public void strassentulonAika1x1() {
+        double[][] matriisi1 = generoiMatriisi(1, 1);
+        double[][] matriisi2 = generoiMatriisi(1, 1);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.strassentulo(m2);
+        long kulunut = kulunutAika(aloitusaika);
+        
+        System.out.println("Strassentulo 1x1: " + kulunut);
+        
+    }
+    
+    @Test
+    public void strassentulonAika10x10() {
+        double[][] matriisi1 = generoiMatriisi(10, 10);
+        double[][] matriisi2 = generoiMatriisi(10, 10);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.strassentulo(m2);
+        long kulunut = kulunutAika(aloitusaika);
+        
+        System.out.println("Strassentulo 10x10: " + kulunut);
+        assertTrue(kulunut <= Math.pow(getStrassentulonAika(1), 2.8074));
+    }
+    
+     @Test
+    public void strassentulonAika50x50() {
+        double[][] matriisi1 = generoiMatriisi(50, 50);
+        double[][] matriisi2 = generoiMatriisi(50, 50);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.strassentulo(m2);
+        long kulunut = kulunutAika(aloitusaika);
+        
+        System.out.println("Strassentulo 50x50: " + kulunut);
+        assertTrue(kulunut <= Math.pow(getStrassentulonAika(5), 2.8074));
+    }
+    @Test
+    public void strassentulonAika100x100() {
+        double[][] matriisi1 = generoiMatriisi(100, 100);
+        double[][] matriisi2 = generoiMatriisi(100, 100);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.strassentulo(m2);
+        long kulunut = kulunutAika(aloitusaika);
+        
+        System.out.println("Strassentulo 100x100: " + kulunut);
+        assertTrue(kulunut <= Math.pow(getStrassentulonAika(10), 2.8074));
+    }
+      @Test
+    public void strassentulonAika500x500() {
+        double[][] matriisi1 = generoiMatriisi(500, 500);
+        double[][] matriisi2 = generoiMatriisi(500, 500);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.strassentulo(m2);
+        long kulunut = kulunutAika(aloitusaika);
+        
+        System.out.println("Strassentulo 500x500: " + kulunut);
+        assertTrue(kulunut <= Math.pow(getStrassentulonAika(50), 2.8074));
+    }
+    
+    @Test
+    public void strassentulonAika1000x1000() {
+        double[][] matriisi1 = generoiMatriisi(1000, 1000);
+        double[][] matriisi2 = generoiMatriisi(1000, 1000);
+        
+        Matriisi m1 = new Matriisi(matriisi1);
+        Matriisi m2 = new Matriisi(matriisi2);
+        
+        long aloitusaika = System.nanoTime();
+        m1.strassentulo(m2);
+        long kulunut = kulunutAika(aloitusaika);
+        
+        System.out.println("Strassentulo 1000x1000: " + kulunut);
+        assertTrue(kulunut <= Math.pow(getStrassentulonAika(100), 2.8074));
     }
     
     @Test
@@ -97,7 +282,7 @@ public class SuorituskykyTest {
         long kulunut = lopetusaika - aloitusaika;
         
         System.out.println("Matriisilla 1000x1000: " + kulunut);
-        assertTrue(kulunut < 20000000);
+        assertTrue(kulunut < 30000000);
         
     }
     
@@ -116,7 +301,7 @@ public class SuorituskykyTest {
         long kulunut = lopetusaika - aloitusaika;
         
         System.out.println("Matriisilla 10x50X40x10: " + kulunut);
-        assertTrue(kulunut < 2000000);
+        assertTrue(kulunut < 3000000);
         
     }
     @Test
@@ -134,7 +319,7 @@ public class SuorituskykyTest {
         long kulunut = lopetusaika - aloitusaika;
         
         System.out.println("Matriisilla 4000x3000: " + kulunut);
-        assertTrue(kulunut < 200000000);
+        assertTrue(kulunut < 300000000);
         
     }
 
@@ -147,11 +332,11 @@ public class SuorituskykyTest {
         
         laskin.doolittle(m);
         
-        long lopetusaika = System.nanoTime();
-        long kulunut = lopetusaika - aloitusaika;
         
-        System.out.println("Matriisilla 10x10: " + kulunut);
-        assertTrue(kulunut < 200000);
+        long kulunut = kulunutAika(aloitusaika);
+        
+        System.out.println("Doolittle matriisilla 10x10: " + kulunut);
+        assertTrue(kulunut < 300000);
         
     }
     
@@ -164,11 +349,10 @@ public class SuorituskykyTest {
         
         long aloitusaika = System.nanoTime();
         this.laskin.doolittle(m);
-        long lopetusaika = System.nanoTime();
-        long kulunut = lopetusaika - aloitusaika;
+        long kulunut = kulunutAika(aloitusaika);
         
-        System.out.println("Matriisilla 100x100: " + kulunut);
-        assertTrue(kulunut < 9000000);
+        System.out.println("Doolittle matriisilla 100x100: " + kulunut);
+        assertTrue(kulunut < 90000000);
         
     }
     
@@ -181,11 +365,10 @@ public class SuorituskykyTest {
         
         long aloitusaika = System.nanoTime();
         this.laskin.doolittle(m);
-        long lopetusaika = System.nanoTime();
-        long kulunut = lopetusaika - aloitusaika;
+        long kulunut = kulunutAika(aloitusaika);
         
-        System.out.println("Matriisilla 500x500: " + kulunut);
-        assertTrue(kulunut < 90000000);
+        System.out.println("Doolittle matriisilla 500x500: " + kulunut);
+        assertTrue(kulunut < 900000000);
         
     }
 

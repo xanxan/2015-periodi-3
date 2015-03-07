@@ -50,6 +50,8 @@ public class Kayttoliittyma {
                     ylakolmiomatriisi();
                 } else if (komento.equals("inv")) {
                     kaanteismatriisi();
+                } else if (komento.equals("tulosta")) {
+                    tulostaMatriisi();
                 } else if (komento.equals("q")){
                     break;
                 } 
@@ -73,6 +75,24 @@ public class Kayttoliittyma {
             this.varasto.lisaaVarastoon(m);
             System.out.println(nimi + "= \n" + m.toString());
             
+        }
+        public Matriisi etsiVarastosta(String nimi) {
+            Matriisi m = varasto.etsiVarastosta(nimi);
+            if (m == null) {
+                System.out.println("Varastosta ei löytynyt matriisia tällä nimellä");
+                return null;
+            } else {
+                return m;
+            }
+        }
+        /**
+         * Tulostaa matriisin.
+         */
+        public void tulostaMatriisi() {
+            System.out.println("Anna matriisin nimi:");
+            String nimi = lukija.nextLine();
+            Matriisi m = varasto.etsiVarastosta(nimi);
+            System.out.println("Matriisi" + nimi + ": \n" + m.toString());
         }
         /**
          * Tulostaa skalaaritulon.

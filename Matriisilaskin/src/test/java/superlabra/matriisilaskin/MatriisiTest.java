@@ -28,6 +28,13 @@ public class MatriisiTest {
     public MatriisiTest() {
        
     }
+    /**
+     * Palauttaa yhdellä kasvavan lukujonon matriisimuodossa.
+     * @param leveys matriisin leveys.
+     * @param pituus matriisin pituus.
+     * @return lukujonomatriisi.
+     */
+    
     private double[][] lukujonomatriisi(int leveys, int pituus) {
         int luku = 1;
         double[][] matriisi = new double[pituus][leveys];
@@ -39,7 +46,12 @@ public class MatriisiTest {
         }
         return matriisi;
     }
-    
+    /**
+     * Palauttaa halutun kokoisen ykkösmatriisin.
+     * @param leveys matriisin leveys.
+     * @param pituus matriisin pituus.
+     * @return ykkösmatriisi.
+     */
     private double[][] ykkosmatriisi(int leveys, int pituus) {
     
         double[][] matriisi = new double[pituus][leveys];
@@ -55,6 +67,12 @@ public class MatriisiTest {
         }
         return matriisi;
     }
+    /**
+     * Generoi halutun kokoisen matriisin satunnaisilla arvoilla.
+     * @param leveys matriisin leveys.
+     * @param pituus matriisin pituus.
+     * @return satunnaismatriisi.
+     */
     private double[][] generoiMatriisi(int leveys, int pituus) {
         
         Random r = new Random();
@@ -88,11 +106,9 @@ public class MatriisiTest {
     }
     
     
-    /**
-     * Test of skalaaritulo method, of class Matriisi.
-     */
+    
     @Test
-    public void testSkalaaritulo() { // liukuluvussa 0.0/-0.0 ongelma korjataan myöhemmin
+    public void skalaarituloToimii() { 
        
        
        int a = 0; int b = 1; int c = 5; int d = -100;
@@ -116,14 +132,14 @@ public class MatriisiTest {
     }
     
     @Test
-    public void testOnkoKerrottavissa() {
+    public void onkoKerrottavissaToimii() {
         assertTrue(k.onkoKerrottavissa(i));
         assertFalse(i.onkoKerrottavissa(k));
         
     }
     
     @Test
-    public void testKoontarkistusTyhjälläMatriisilla() {
+    public void koontarkistusTyhjälläMatriisilla() {
         double[][]  tyhja= {{}};
         Matriisi t = new Matriisi(tyhja);
         
@@ -132,33 +148,25 @@ public class MatriisiTest {
     }
     
     @Test
-    public void testMatriisiensumma() {
+    public void matriisiensummaToimii() {
         
          double[][] summa = {{7,0,5},
                          {-3,3,101}};
          
          assertArrayEquals(summa, x.matriisiensumma(y).getMatriisi());
-         
-         
-         
     }
 
-    /**
-     * Test of matriisienerotus method, of class Matriisi.
-     */
+    
     @Test
-    public void testMatriisienerotus() {
+    public void matriisienerotusToimii() {
           double[][] erotus = {{-3,0,-15},
                            {5,9,99}};
          
           assertArrayEquals(erotus, x.matriisienerotus(y).getMatriisi());
     }
 
-    /**
-     * Test of matriisitulo method, of class Matriisi.
-     */
     @Test
-    public void testMatriisitulo() {
+    public void matriisituloKokonaisluvuillaToimii() {
           double[][] tulo1 = {{-4,-3,1},
                          {86,27,91}};
           double[][] tulo2 = {{5,10,15}};
@@ -167,7 +175,7 @@ public class MatriisiTest {
           assertArrayEquals(tulo2, k.matriisitulo(i).getMatriisi());
     }
     @Test
-    public void testDesimaaliMatriisitulo() {
+    public void matriisituloDesimaaliarvoillaToimii() {
         double[][] tulo1 = {{6.1,0,1.5},{-69.9,0.04,6.5}};
         assertArrayEquals(tulo1, z.matriisitulo(j).getMatriisi());
     }
@@ -234,18 +242,15 @@ public class MatriisiTest {
         
         assertArrayEquals(tulo, m.matriisitulo(n).getMatriisi());
     }
-    /**
-     * Test of koontarkistus method, of class Matriisi.
-     */
     @Test
-    public void testKoontarkistus() {
+    public void testKoontarkistusToimii() {
           
           assertTrue(x.koontarkistus(y));
           assertFalse(y.koontarkistus(z));
     }
     
     @Test
-    public void testTranspoosi() {
+    public void transpoosiToimii() {
         
         double[][] transpoosi = {{0,10},
                               {1, -9}};

@@ -4,19 +4,48 @@
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0\fs28 \cf0 Toteutusdokumentti\
+\f0\b\fs36 \cf0 Toteutusdokumentti
+\b0\fs28 \
 \
-Ohjelman yleisrakenne\
+
+\b Ohjelman yleisrakenne
+\b0 \
 \
-Matriisivarasto ottaa vastaan ja tallentaa k\'e4ytt\'e4j\'e4n sy\'f6tt\'e4m\'e4t matriisit ja kutsuu matriisien operaatioita suorittavia metodeja k\'e4ytt\'f6liittym\'e4luokassa. Ohjelmalla on rajapinta, joka m\'e4\'e4ritt\'e4\'e4 matriisiolion pakolliset ominaisuudet, eli luokan Matriisi on palautettava matriisin sis\'e4lt\'f6, leveys ja pituus. Matriisin perusoperaatiot kutsutaan matriisioliolle ja niiden palautusarvo on matriisiolio. Luokka LU on k\'e4yt\'e4nn\'f6ss\'e4 laskin, joka suorittaa LU-hajotelman operaatiot parametriksi annetulle matriisioliolle ja my\'f6s palauttaa matriisiolion.  \
+Ohjelmassa on tekstik\'e4ytt\'f6liittym\'e4, joka vastaanottaa k\'e4ytt\'e4j\'e4n sy\'f6tt\'e4m\'e4t matriisit merkkijonona ja k\'e4ytt\'e4j\'e4n antamat laskuoperaatiot sek\'e4 muut k\'e4yskyt. Matriisivarasto muuntaa merkkijonon matriisiksi ja tallentaa sen varastoon. Ohjelmalla on rajapinta, joka m\'e4\'e4ritt\'e4\'e4 matriisiolion pakolliset ominaisuudet, eli luokan Matriisi on palautettava matriisin sis\'e4lt\'f6, leveys ja pituus. Matriisin perusoperaatiot kutsutaan matriisioliolle ja niiden palautusarvo on matriisiolio. Matriisiluokasta l\'f6ytyv\'e4t my\'f6s laskuoperaatioiden tarvitsemat apumetodit. Luokka LU on k\'e4yt\'e4nn\'f6ss\'e4 laskin, joka suorittaa LU-hajotelman operaatiot parametriksi annetulle matriisioliolle ja my\'f6s palauttaa matriisiolion.  Ne ovat omassa luokassaan siksi, koska kaikkia matriiseja ei voi laskea yl\'e4- ja alamatriisin tulona. Ohjelma ei kuitenkaan erikseen kerro k\'e4ytt\'e4j\'e4lle, toteuttaako annetut matriisit LU -hajotelman ja determinantti lasketaan sen avulla kaikille matriiseille.\
 \
-Saavutetut aika- ja tilavaativuudet\
+
+\b Ohjelman toiminnasta
+\b0 \
 \
-Tilavaativuutena toimii matriisin koko. Matriisikertolasku toimii t\'e4ll\'e4 hetkell\'e4 O(n^3) ajassa (kolme looppia ja loput toiminnot O(1) eli vakioajassa). getL ja getU ovat O(n^2) ja doolittle O(n^3).\
+Lu -luokan opiraatiot kutsutaan sellaisille matriiseille, jotka ovat jo hajautettuja doolittlella (paitsi doolittle itse, jota kutsutaan tavalliselle matriisille). Doolittlea kutsutaan matriisille siis k\'e4ytt\'f6liittym\'e4ss\'e4. Kertolaskussa k\'e4ytt\'f6liittym\'e4 kutsuu Strassen tuloa, joka puolestaan kutsuu naiivia tuloa jos matriisi tai sen alamatriisit ovat kooltaan noin alle 100x100 suuruiset. P\'e4\'e4dyin t\'e4h\'e4n ratkaisuun, sill\'e4 empiirisen testauksen mukaan Strasse on tehokkaampi vasta sit\'e4 isommilla sy\'f6tteill\'e4. Doolittle ei toimi j\'e4rin tehokkaasti isoilla sy\'f6tteill\'e4, mutta muilla operaatioilla sy\'f6tteen koko ei jumita ohjelmaa niin pitk\'e4ksi aikaa. En ole varma laskeeko ohjelma oikean determinantin niille matriiseille joita ei voi hajottaa LU -matriiseiksi. Empiirisess\'e4 testauksessa n\'e4m\'e4 matriisit ovat palauttaneet oikean determinantin, mutta se voi olla sattumaa. Kuitenkin laskettaessa matriisin determinanttia operaatio toteutetaan kaikille LU -hajotelmalla.\
 \
-Suorituskyky- ja O-analyysivertailu\
+
+\b Saavutetut aika- ja tilavaativuudet
+\b0 \
 \
-Ty\'f6n mahdolliset puutteet ja parannusehdotukset\
+Tilavaativuutena toimii matriisin koko. Naiivi matriisikertolasku toimii O(n^3) ajassa (kolme looppia ja loput toiminnot O(1) eli vakioajassa) ja Strassen matriisikertolasku tehokkaammassa O(n^2.8074) ajassa. Ohjelma k\'e4ytt\'e4\'e4 Strassen tuloa ja siirtyy naiiviin algoritmiin kun matriisin koko on alle sadan. Metodit getL() ja getU() ovat O(n^2) (kaksi sis\'e4kk\'e4ist\'e4 looppia) ja doolittle O(n^3) (korkeintaan kolme sis\'e4kk\'e4ist\'e4 looppia). K\'e4\'e4nteismatriisiin koodi on v\'e4\'e4r\'e4n tuloksen antavalla versiolla O(n^3) (korkeintaan kolme sis\'e4kk\'e4ist\'e4 looppia). T\'e4m\'e4 aikavaativuus on melko varmasti my\'f6s oikein toimivassa versiossa.\
 \
-K\'e4\'e4nteismatriisi ei toimi toistaiseksi. Ohjelman voisi "k\'e4\'e4nt\'e4\'e4 suomesta englanniksi" mik\'e4li aikaa j\'e4\'e4, koska nykyinen suomen ja englannin sekasotku ei ole kovin funktionaalinen. \
-L\'e4hteet}
+
+\b Suorituskyky- ja O-analyysivertailu
+\b0 \
+\
+\pard\pardeftab720
+\cf0 Empiirisen testauksen perusteella kertolaskualgoritmit noudattavat niit\'e4 O-vaativuuksia, mit\'e4 niiden oikein toteutettuna kuuluukin toteuttaa. Siis naiivi on O(n^3) ja Strasse O(n^2.8074).  Kuten suorituskykytesteist\'e4 on k\'e4ynyt ilmi, naiivi tapa on tehokkaampi pienill\'e4 ja Strasse isoilla sy\'f6tteill\'e4.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+
+\b Ty\'f6n mahdolliset puutteet ja parannusehdotukset
+\b0 \
+\
+Koska ty\'f6h\'f6n k\'e4ytett\'e4viss\'e4 ollut aika oli rajallinen ja sairasteluiden sek\'e4 muiden kurssit\'f6iden takia projekti eteni hieman aikataulustaan j\'e4ljess\'e4, en onnistunut korjaamaan k\'e4\'e4nteismatriisioperaatiota toimivaksi. Metodi ei kaada ohjelmaa, mutta palauttaa v\'e4\'e4r\'e4t arvot puolelle alkioista. T\'e4st\'e4 syyst\'e4 p\'e4\'e4tin s\'e4ilytt\'e4\'e4 koodin ohjelmassa, mutta vedin sen ja siihen liittyv\'e4t testit ja k\'e4ytt\'f6liittym\'e4n koodin harmaaksi. Ohjaaja voi halutessaan testata k\'e4\'e4nteismatriisin toimivuutta, mutta se on palautuksessani mukana ep\'e4virallisena osana. My\'f6s testit etenkin LU-luokassa j\'e4iv\'e4t hieman vajaiksi, kun en ehtinyt niit\'e4 enemp\'e4\'e4 kirjoittaa ja keskityin empiiriseen testaukseen ja suorituskykytesteihin. Jos jatkaisin ty\'f6t\'e4, toteuttaisin toimivan k\'e4\'e4nteismatriisin LU-hajotelman avulla ja my\'f6s perinteisell\'e4 tavalla, jolloin voisin vertailla n\'e4iden tapojen tehokkuutta. \
+\
+\
+
+\b L\'e4hteet
+\b0 \
+\
+\pard\pardeftab720\sa240
+
+\fs30 \cf0 LU-hajotelma: http://en.wikipedia.org/wiki/LU_decomposition\uc0\u8232 Doolittle: https://vismor.com/documents/network_analysis/matrix_algorithms/ S4.SS2.php\u8232 Strassen algoritmi: http://en.wikipedia.org/wiki/Strassen_algorithm K\'e4\'e4nteismatriisi: http://www.ece.mcmaster.ca/~kiruba/3sk3/lecture6.pdf\
+Strassen pseudokoodi: http://www.google.fi/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&ved=0CDMQFjAD&url=http%3A%2F%2Fhrcak.srce.hr%2Ffile%2F106985&ei=p8H8VO6KCcWzUeCigOAP&usg=AFQjCNHicoJUMH8uray9NP7mlzAkhytbqQ&sig2=uLAbl-ftKXbfsVK61oU0GA&bvm=bv.87611401,d.d24\
+(anteeksi hirve\'e4 linkki)}

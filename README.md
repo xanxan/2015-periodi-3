@@ -1,4 +1,4 @@
-# 2015-periodi-3
+# Matrix calculator - Tietorakenteiden ja algoritmien harjoitustyö
 
 
 Tiralabra 2015
